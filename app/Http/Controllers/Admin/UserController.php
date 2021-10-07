@@ -35,14 +35,15 @@ class UserController extends Controller
         ];
         try {
             $messageRepository = new MessageRepository();
-            $result['data'] = $messageRepository->lists($params);
-            $result['amount'] = $messageRepository->listsAmount($params);
+            //$result['data'] = $messageRepository->lists($params);
+            //$result['amount'] = $messageRepository->listsAmount($params);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.home', ['adm' => $admin, 'result' => $result]);
+        //return view('admin.home', ['adm' => $admin, 'result' => $result]);
+        return view('admin.home');
     }
 
     public function loginPage(Request $request) {
