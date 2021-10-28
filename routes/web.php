@@ -97,6 +97,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::get('setting', 'Admin\UserController@passAdmin');
     Route::post('setting', 'Admin\UserController@passUpdate');
 
+    Route::get('companies', 'Admin\CompanyController@index');
+    Route::get('companies/create', 'Admin\CompanyController@createPage');
+    Route::post('companies/create', 'Admin\CompanyController@create');
+
     /*
     Route::get('record', 'Admin\RecordController@index');
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
