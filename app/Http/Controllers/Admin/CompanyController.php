@@ -54,4 +54,61 @@ class CompanyController extends Controller
         }
         return view('admin.account.createResult', ['adm' => $admin, 'result' => $result]);
     }
+
+    public function edit(Request $request, $id) {
+        $admin = Session::get('admin');
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $companyRepository = new CompanyRepository();
+            $result['company'] = $companyRepository->getById($id);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('admin/company/edit', ['adm' => $admin, 'result' => $result]);
+    }
+
+    public function update(Request $request, $id) {
+        $admin = Session::get('admin');
+        $params = $request->all();
+        $files = [];
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        /*
+        if($request->hasFile('CustGIDPicture1'))
+            $files['CustGIDPicture1'] = $request->file('CustGIDPicture1');
+         */
+        try {
+            $companyRepository = new CompanyRepository();
+            $companyRepository->updateById($id, $params, $admin, $files);
+        } catch (Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('admin.proccessResult', ['adm' => $admin, 'result' => $result]);
+    }
+
+    public function remove(Request $request, $id) {
+        $admin = Session::get('admin');
+        $files = [];
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+
+        try {
+            $companyRepository = new CompanyRepository();
+            $companyRepository->del($id);
+        } catch (Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('admin.proccessResult', ['adm' => $admin, 'result' => $result]);
+    }
 }

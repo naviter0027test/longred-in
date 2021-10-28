@@ -44,4 +44,55 @@ class CompanyRepository
         $company->updated_at = date('Y-m-d H:i:s');
         $company->save();
     }
+
+    public function getById($id) {
+        $company = Company::where('id', '=', $id)
+            ->first();
+        if(isset($company->id) == false) {
+            throw new Exception('廠商不存在');
+        }
+        return $company;
+    }
+
+    public function updateById($id, $params, $admin, $files = []) {
+        $company = Company::where('id', '=', $id)
+            ->first();
+        if(isset($company->id) == false) {
+            throw new Exception('案件不存在');
+        }
+        $company->Password = isset($params['Password']) ? $params['Password'] : '';
+        $company->UserName = isset($params['UserName']) ? $params['UserName'] : '';
+        $company->updated_at = date('Y-m-d H:i:s');
+
+        $company->save();
+
+        $root = config('filesystems')['disks']['uploads']['root'];
+        $path = date('/Y/m'). '/';
+        /*
+        if(isset($files['CustGIDPicture1'])) {
+            if(trim($record->CustGIDPicture1) == '') {
+                $ext = $files['CustGIDPicture1']->getClientOriginalExtension();
+                $filename = $record->id. "_pic1.$ext";
+                $record->CustGIDPicture1 = $path. $filename;
+                $record->save();
+            } else {
+                $splitArr = preg_split("/\//", $record->CustGIDPicture1);
+                $path = $splitArr[0]. "/". $splitArr[1]. "/". $splitArr[2]. "/";
+                $filename = $splitArr[3];
+            }
+            $files['CustGIDPicture1']->move($root. $path, $filename);
+
+            $this->addText($root. $path. $filename);
+        }
+         */
+    }
+
+    public function del($id) {
+        $company = Company::where('id', '=', $id)
+            ->first();
+        if(isset($company->id) == false) {
+            throw new Exception('廠商不存在');
+        }
+        $company->delete();
+    }
 }
