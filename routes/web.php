@@ -104,6 +104,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::post('companies/edit/{id}', 'Admin\CompanyController@update');
     Route::get('companies/remove/{id}', 'Admin\CompanyController@remove');
 
+    Route::get( 'account', 'Admin\AccountController@lists');
+    Route::get( 'account/create', 'Admin\AccountController@createPage');
+    Route::post('account/create', 'Admin\AccountController@create');
+    Route::get( 'account/edit/{id}', 'Admin\AccountController@edit');
+    Route::post('account/edit/{id}', 'Admin\AccountController@update');
+    Route::get( 'account/remove/{id}', 'Admin\AccountController@remove');
+
     /*
     Route::get('record', 'Admin\RecordController@index');
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
@@ -112,13 +119,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::post('record/import', 'Admin\RecordController@import');
     Route::get('record/remove/{id}', 'Admin\RecordController@remove');
     Route::get('grant', 'Admin\RecordController@grant');
-
-    Route::get( 'account', 'Admin\AccountController@lists');
-    Route::get( 'account/create', 'Admin\AccountController@createPage');
-    Route::post('account/create', 'Admin\AccountController@create');
-    Route::get( 'account/edit/{id}', 'Admin\AccountController@edit');
-    Route::post('account/edit/{id}', 'Admin\AccountController@update');
-    Route::get( 'account/remove/{id}', 'Admin\AccountController@remove');
 
     Route::get('message/record/{id}', 'Admin\MessageController@getByRecordId');
     Route::post('message/send', 'Admin\MessageController@send');

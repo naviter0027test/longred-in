@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use \App\Http\Controllers\Controller;
-use App\Repositories\AccountRepository;
+use App\Repositories\UserRepository;
 use Session;
 use Exception;
 
@@ -21,21 +21,34 @@ class AccountController extends Controller
             'msg' => 'success',
         ];
         try {
-            $accountRepository = new AccountRepository();
-            $result['accounts'] = $accountRepository->lists($params);
-            $result['amount'] = $accountRepository->listsAmount($params);
+            $userRepository = new UserRepository();
+            $result['users'] = $userRepository->lists($params);
+            $result['amount'] = $userRepository->listsAmount($params);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.account.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage, 'keyword' => $keyword]);
+        return view('admin.user.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage, 'keyword' => $keyword]);
     }
 
     public function createPage(Request $request) {
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
         $admin = Session::get('admin');
         $params = $request->all();
-        return view('admin.account.create', ['adm' => $admin]);
+        $params['offset'] = 9999;
+        try {
+            $userRepository = new UserRepository();
+            $result['users'] = $userRepository->lists($params);
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return view('admin.user.create', ['adm' => $admin, 'result' => $result]);
     }
 
     public function create(Request $request) {
@@ -46,14 +59,14 @@ class AccountController extends Controller
             'msg' => '新增成功',
         ];
         try {
-            $accountRepository = new AccountRepository();
-            $accountRepository->create($params);
+            $userRepository = new UserRepository();
+            $userRepository->create($params);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.account.createResult', ['adm' => $admin, 'result' => $result]);
+        return view('admin.proccessResult', ['adm' => $admin, 'result' => $result]);
     }
 
     public function edit(Request $request, $id) {
@@ -63,14 +76,14 @@ class AccountController extends Controller
             'msg' => 'success',
         ];
         try {
-            $accountRepository = new AccountRepository();
-            $result['account'] = $accountRepository->getById($id);
+            $userRepository = new UserRepository();
+            $result['user'] = $userRepository->getById($id);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.account.edit', ['adm' => $admin, 'result' => $result]);
+        return view('admin.user.edit', ['adm' => $admin, 'result' => $result]);
     }
 
     public function update(Request $request, $id) {
@@ -81,14 +94,14 @@ class AccountController extends Controller
             'msg' => '編輯成功',
         ];
         try {
-            $accountRepository = new AccountRepository();
-            $result['account'] = $accountRepository->update($id, $params);
+            $userRepository = new UserRepository();
+            $result['user'] = $userRepository->update($id, $params);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.account.createResult', ['adm' => $admin, 'result' => $result]);
+        return view('admin.user.createResult', ['adm' => $admin, 'result' => $result]);
     }
 
     public function remove(Request $request, $id) {
@@ -98,13 +111,13 @@ class AccountController extends Controller
             'msg' => '刪除成功',
         ];
         try {
-            $accountRepository = new AccountRepository();
-            $accountRepository->delById($id);
+            $userRepository = new UserRepository();
+            $userRepository->delById($id);
         }
         catch(Exception $e) {
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.account.createResult', ['adm' => $admin, 'result' => $result]);
+        return view('admin.user.createResult', ['adm' => $admin, 'result' => $result]);
     }
 }
