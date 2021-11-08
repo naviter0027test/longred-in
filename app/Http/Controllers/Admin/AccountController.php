@@ -75,9 +75,12 @@ class AccountController extends Controller
             'result' => true,
             'msg' => 'success',
         ];
+        $params = $request->all();
+        $params['offset'] = 9999;
         try {
             $userRepository = new UserRepository();
             $result['user'] = $userRepository->getById($id);
+            $result['users'] = $userRepository->lists($params);
         }
         catch(Exception $e) {
             $result['result'] = false;
@@ -101,7 +104,7 @@ class AccountController extends Controller
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.user.createResult', ['adm' => $admin, 'result' => $result]);
+        return view('admin.proccessResult', ['adm' => $admin, 'result' => $result]);
     }
 
     public function remove(Request $request, $id) {
@@ -118,6 +121,6 @@ class AccountController extends Controller
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.user.createResult', ['adm' => $admin, 'result' => $result]);
+        return view('admin.proccessResult', ['adm' => $admin, 'result' => $result]);
     }
 }

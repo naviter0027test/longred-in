@@ -11,28 +11,38 @@
     <body>
 @include('admin.layout.menu')
         <div class="content">
-            <h3>使用者 - 新增</h3>
-            <form method='post' action='/admin/account/create' class='form1' enctype="multipart/form-data">
+            <h3>使用者 - 編輯</h3>
+            @if($result['result'] == false)
+            {{ $result['msg'] }}
+            @else
+            <form method='post' action='/admin/account/edit/{{ $result['user']->id }}' class='form1' enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <h5>帳號</h5>
-                <p> <input type="text" name="UserId" required /> </p>
+                <p> <input type="text" name="UserId" value="{{ $result['user']->UserId }}" required /> </p>
                 <h5>密碼</h5>
-                <p> <input type="password" name="Password" required /> </p>
+                <p> <input type="password" name="Password" /> </p>
                 <h5>名稱</h5>
-                <p> <input type="text" name="UserName" /> </p>
+                <p> <input type="text" name="UserName" value="{{ $result['user']->UserName }}" /> </p>
                 <h5>區域</h5>
-                <p> <input type="text" name="Area" /> </p>
+                <p> <input type="text" name="Area" value="{{ $result['user']->Area }}" /> </p>
                 <h5>權限</h5>
-                <p>
-                    全部 <input type="checkbox" name="isPrivilegesAll" value="ALL" />
+                <p> 
+                    全部 <input type="checkbox" name="isPrivilegesAll" value="ALL" 
+                @if($result['user']->isPrivilegesAll == true) checked @endif
+                    />
                     <select type="text" name="Privileges[]" multiple> 
                     @foreach($result['users'] as $user)
-                        <option value="{{ $user->UserId }}">{{ $user->UserName }}</option>
+                        <option value="{{ $user->UserId }}"
+                        @if(in_array($user->UserId, $result['user']->privileges ))
+                            selected
+                        @endif
+                        >{{ $user->UserName }}</option>
                     @endforeach
                     </select>
-                </p>
-                <p class=""> <button class="btn">新增</button> </p>
+ </p>
+                <p class=""> <button class="btn">編輯</button> </p>
             </form>
+            @endif
         </div>
     </body>
     <script src="/lib/jquery-2.1.4.min.js"></script>
@@ -40,6 +50,5 @@
     <script src="/lib/jquery-validation/dist/additional-methods.min.js"></script>
     <script src="/lib/jquery-validation/dist/localization/messages_zh_TW.min.js"></script>
     <script src="/lib/selectize.js-master/dist/js/standalone/selectize.js"></script>
-    <script src="/js/admin/account/create.js"></script>
+    <script src="/js/admin/account/edit.js"></script>
 </html>
-

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('.form1').validate();
-    $('[name=Privileges]').selectize({
+    $('[name="Privileges[]"]').selectize({
         'create': false,
         'sortField': {
             'field': 'text',

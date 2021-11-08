@@ -38,6 +38,12 @@ class UserRepository
             throw new Exception('帳號重複');
         if(isset($params['isPrivilegesAll']) && $params['isPrivilegesAll'] == 'ALL')
             $params['Privileges'] = ['ALL'];
+        else if(isset($params['Privileges']) && is_array($params['Privileges']))
+            $params['Privileges'][] = $userTmp;
+        else if(isset($params['Privileges']) && is_string($params['Privileges'])) {
+            $privilege = $params['Privileges'];
+            $params['Privileges'] = [$userTmp, $privilege];
+        }
         $user = new User();
         $user->UserId = $userTmp;
         $user->Password = isset($params['Password']) ? $params['Password'] : '';
@@ -45,5 +51,43 @@ class UserRepository
         $user->Area = isset($params['Area']) ? $params['Area'] : '';
         $user->Privileges = isset($params['Privileges']) ? implode(',', $params['Privileges']) : '';
         $user->save();
+    }
+
+    public function getById($id) {
+        $user = User::where('id', '=', $id)
+            ->first();
+        if(isset($user->id) == false)
+            throw new Exception('帳號不存在');
+        $user->privileges = explode(',', $user->Privileges);
+        $user->isPrivilegesAll = false;
+        if(in_array('ALL', $user->privileges))
+            $user->isPrivilegesAll = true;
+        return $user;
+    }
+
+    public function update($id, $params) {
+        $userTmp = isset($params['UserId']) ? $params['UserId'] : '';
+        $user = User::where('id', '=', $id)
+            ->first();
+        if(isset($params['isPrivilegesAll']) && $params['isPrivilegesAll'] == 'ALL')
+            $params['Privileges'] = ['ALL'];
+        else if(isset($params['Privileges']) && is_array($params['Privileges']) && in_array($userTmp, $params['Privileges']) == false)
+            $params['Privileges'][] = $userTmp;
+
+        $user->UserId = $userTmp;
+        if(isset($params['Password']) && trim($params['Password']) != '')
+            $user->Password = $params['Password'];
+        $user->UserName = isset($params['UserName']) ? $params['UserName'] : '';
+        $user->Area = isset($params['Area']) ? $params['Area'] : '';
+        $user->Privileges = isset($params['Privileges']) ? implode(',', $params['Privileges']) : '';
+        $user->save();
+    }
+
+    public function delById($id) {
+        $user = User::where('id', '=', $id)
+            ->first();
+        if(isset($user->id) == false)
+            throw new Exception('帳號不存在');
+        $user->delete();
     }
 }
