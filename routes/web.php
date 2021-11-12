@@ -111,12 +111,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::post('account/edit/{id}', 'Admin\AccountController@update');
     Route::get( 'account/remove/{id}', 'Admin\AccountController@remove');
 
-    /*
     Route::get('record', 'Admin\RecordController@index');
+    Route::post('record/import', 'Admin\RecordController@import');
+    /*
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
     Route::post('record/edit/{id}', 'Admin\RecordController@update');
     Route::get('record/edit/download/{id}', 'Admin\RecordController@downloadAllImages');
-    Route::post('record/import', 'Admin\RecordController@import');
     Route::get('record/remove/{id}', 'Admin\RecordController@remove');
     Route::get('grant', 'Admin\RecordController@grant');
 

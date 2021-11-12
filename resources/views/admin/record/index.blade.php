@@ -17,6 +17,7 @@
                     <input type="file" name="importCSV" class="importCSV" />
                 </form>
                 <form method="get" action="/admin/record" class="searchBar">
+<!--
                     案件狀態
                     <select name="checkStatus">
                         <option value=""  >請選擇</option>
@@ -40,10 +41,13 @@
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="{{ isset($params['keyword']) ? $params['keyword'] : '' }}" />
                     <input type="text" name="dealer" placeholder="經銷商" value="{{ isset($params['dealer']) ? $params['dealer'] : '' }}" />
                     <button class="btn">查詢</button>
+-->
                 </form>
+<!--
                 <a href="#" class="importBtn btn">
                     CSV 匯入
                 </a>
+-->
             </div>
             <table class="table1">
                 <thead>
