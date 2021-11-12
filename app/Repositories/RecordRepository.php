@@ -136,10 +136,10 @@ class RecordRepository
 
     public function lists($params) {
         $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
-        $offset = isset($params['offset']) ? (int) $params['offset'] : 10;
+        $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
         $startDate = date('Y-m-d 00:00:00', strtotime('-3 months'));
 
-        $recordQuery = Record::orderBy('created_at', 'desc')
+        $recordQuery = Record::orderBy('CustCreateTime', 'desc')
             ->skip(($nowPage-1) * $offset)
             ->take($offset);
         /*
@@ -266,7 +266,7 @@ class RecordRepository
 
         //已存在的情況下，視為編輯。相反則是為新增
         if(isset($record->CustID)) {
-            $record->CustID = (isset($row[0]) ? $row[0] : '');
+            //$record->CustID = (isset($row[0]) ? $row[0] : '');
             $record->CaseID = (isset($row[1]) ? $row[1] : '');
             $record->CustName = (isset($row[2]) ? $row[2] : '');
             $record->CustProjectStatus = (isset($row[3]) ? $row[3] : '');

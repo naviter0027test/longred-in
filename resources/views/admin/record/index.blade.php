@@ -52,13 +52,12 @@
             <table class="table1">
                 <thead>
                     <tr>
-                        <td>身份證</td>
+                        <td>進件編號</td>
                         <td>申請人姓名</td>
                         <td>案件狀態</td>
                         <td>準駁日期</td>
-                        <td>商品名稱</td>
+                        <td>商品型號</td>
                         <td>申貸金額</td>
-                        <td>建立日期</td>
                         <td>操作</td>
                     </tr>
                 </thead>
@@ -66,16 +65,17 @@
                 @if(isset($result['records']))
                 @foreach($result['records'] as $record)
                     <tr>
-                        <td>{{ $record->CustGID }}</td>
-                        <td>{{ $record->applicant }}</td>
-                        <td>{{ $record->checkStatus }}</td>
-                        <td>{{ $record->allowDate }}</td>
-                        <td>{{ $record->productName }}</td>
-                        <td>{{ $record->applyAmount }}</td>
-                        <td>{{ $record->created_at }}</td>
+                        <td>{{ $record->CustID }}</td>
+                        <td>{{ $record->CustName }}</td>
+                        <td>{{ $record->CustProjectStatus }}</td>
+                        <td>{{ $record->CustAllowDenyTime }}</td>
+                        <td>{{ $record->CarModelType }}</td>
+                        <td>{{ $record->CustLoanCash }}</td>
                         <td>
                             <a href='/admin/record/edit/{{ $record->id }}' class="glyphicon glyphicon-pencil"></a>
+<!--
                             <a href='/admin/record/remove/{{ $record->id }}' class="glyphicon glyphicon-remove recordRemove"></a>
+-->
                         </td>
                     </tr>
                 @endforeach

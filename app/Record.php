@@ -11,6 +11,8 @@ class Record extends Model
     protected $dateFormat = 'U';
 
     public $timestamps = false;
+    protected $keyType = 'string';
+    public $incrementing = false;
     public function getDateFormat() {
         return 'Y-m-d H:i:s';
     }
