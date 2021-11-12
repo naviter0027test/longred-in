@@ -12,9 +12,11 @@
         <div class="content">
             <h3>使用者管理</h3>
             <div class="nav">
+<!--
                 <a href="/admin/account/create" class="btn">
                     新增
                 </a>
+-->
             </div>
             <table class="table1">
                 <thead>
@@ -37,7 +39,9 @@
                         <td>{{ $user->created_at }}</td>
                         <td>
                             <a href='/admin/account/edit/{{ $user->id }}' class="glyphicon glyphicon-pencil"></a>
+<!--
                             <a href='/admin/account/remove/{{ $user->id }}' class="glyphicon glyphicon-remove del"></a>
+-->
                         </td>
                     </tr>
                 @endforeach

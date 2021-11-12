@@ -22,7 +22,9 @@
                 <p> <input type="text" name="Password" value="{{ $result['company']->Password }}" /> </p>
                 <h5>廠商名稱</h5>
                 <p> <input type="text" name="UserName" value="{{ $result['company']->UserName }}" /> </p>
+<!--
                 <p class=""> <button class="btn">更改</button> </p>
+-->
             </form>
 
             @endif

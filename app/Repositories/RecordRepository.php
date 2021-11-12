@@ -524,15 +524,27 @@ class RecordRepository
          */
 
     public function getById($id) {
-        $record = Record::where('id', '=', $id)
+        $record = Record::where('CustID', '=', $id)
             ->first();
-        if(isset($record->id) == false) {
+        if(isset($record->CustID) == false) {
             throw new Exception('案件不存在');
         }
-        if(is_null($record->allowDate) == false)
-            $record->allowDateVal = date('Y-m-d', strtotime($record->allowDate));
-        if(is_null($record->grantDate) == false)
-            $record->grantDateVal = date('Y-m-d', strtotime($record->grantDate));
+        if(is_null($record->CustAllowDenyTime) == false)
+            $record->CustAllowDenyTime = date('Y-m-d', strtotime($record->CustAllowDenyTime));
+        if(is_null($record->MoneyCloseDate) == false)
+            $record->MoneyCloseDateVal = date('Y-m-d', strtotime($record->MoneyCloseDate));
+        if(is_null($record->CustCreateTime) == false)
+            $record->CustCreateTimeVal = date('Y-m-d', strtotime($record->CustCreateTime));
+        if(is_null($record->ApplicationReceivedDate) == false)
+            $record->ApplicationReceivedDateVal = date('Y-m-d', strtotime($record->ApplicationReceivedDate));
+        if(is_null($record->LicenseReceivedDate) == false)
+            $record->LicenseReceivedDateVal = date('Y-m-d', strtotime($record->LicenseReceivedDate));
+        if(is_null($record->RenewalLicenseDate) == false)
+            $record->RenewalLicenseDateVal = date('Y-m-d', strtotime($record->RenewalLicenseDate));
+        if(is_null($record->FirstPayDate) == false)
+            $record->FirstPayDateVal = date('Y-m-d', strtotime($record->FirstPayDate));
+        if(is_null($record->BillSendDate) == false)
+            $record->BillSendDateVal = date('Y-m-d', strtotime($record->BillSendDate));
         return $record;
     }
 

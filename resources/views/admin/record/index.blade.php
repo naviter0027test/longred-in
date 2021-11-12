@@ -72,7 +72,7 @@
                         <td>{{ $record->CarModelType }}</td>
                         <td>{{ $record->CustLoanCash }}</td>
                         <td>
-                            <a href='/admin/record/edit/{{ $record->id }}' class="glyphicon glyphicon-pencil"></a>
+                            <a href='/admin/record/edit/{{ $record->CustID }}' class="glyphicon glyphicon-pencil"></a>
 <!--
                             <a href='/admin/record/remove/{{ $record->id }}' class="glyphicon glyphicon-remove recordRemove"></a>
 -->

@@ -14,180 +14,118 @@
             @if($result['result'] == false) 
             {{ $result['msg'] }}
             @else
-            @if(trim($result['record']->accountId) != '')
-            <a class="btn" target="_blank" href="/admin/record/edit/download/{{ $result['record']->id }}">下載所有圖片</a>
-            @endif
-            <form method='post' action='/admin/record/edit/{{ $result['record']->id }}' recordId="{{ $result['record']->id }}" class='form1' enctype="multipart/form-data">
+            <form method='post' action='/admin/record/edit/{{ $result['record']->CustID }}' recordId="{{ $result['record']->CustID }}" class='form1' enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                <h5>身份證字號</h5>
-                <p> <input type="text" name="CustGID" value="{{ $result['record']->CustGID }}" /> </p>
                 <h5>進件編號</h5>
-                <p> {{ $result['record']->submitId }} </p>
+                <p> {{ $result['record']->CustID }} </p>
+                <h5>合約編號</h5>
+                <p> <input type="text" name="CaseID" value="{{ $result['record']->CaseID }}" /> </p>
                 <h5>申請人姓名</h5>
-                <p> <input type="text" name="applicant" value="{{ $result['record']->applicant }}" /> </p>
+                <p> <input type="text" name="CustName" value="{{ $result['record']->CustName }}" /> </p>
                 <h5>案件狀態</h5>
                 <p>
-                    <select name="checkStatus">
-                        <option value="處理中"  {{ $result['record']->checkStatus == '處理中' ? 'selected="selected"' : '' }} >處理中  </option>
-                        <option value="待核准"  {{ $result['record']->checkStatus == '待核准' ? 'selected="selected"' : '' }} >待核准  </option>
-                        <option value="核准"    {{ $result['record']->checkStatus == '核准' ? 'selected="selected"' : '' }} >核准    </option>
-                        <option value="取消申辦" {{ $result['record']->checkStatus == '取消申辦' ? 'selected="selected"' : '' }} >取消申辦</option>
-                        <option value="婉拒"    {{ $result['record']->checkStatus == '婉拒' ? 'selected="selected"' : '' }} >婉拒    </option>
+                    <select name="CustProjectStatus">
+                        <option value="處理中"  {{ $result['record']->CustProjectStatus == '處理中' ? 'selected="selected"' : '' }} >處理中  </option>
+                        <option value="待核准"  {{ $result['record']->CustProjectStatus == '待核准' ? 'selected="selected"' : '' }} >待核准  </option>
+                        <option value="核准"    {{ $result['record']->CustProjectStatus == '核准' ? 'selected="selected"' : '' }} >核准    </option>
+                        <option value="取消申辦" {{ $result['record']->CustProjectStatus == '取消申辦' ? 'selected="selected"' : '' }} >取消申辦</option>
+                        <option value="婉拒"    {{ $result['record']->CustProjectStatus == '婉拒' ? 'selected="selected"' : '' }} >婉拒    </option>
                     </select>
                 </p>
-                <h5>身份證照片 正面 </h5>
-                <p>
-                @if($result['record']->CustGIDPicture1 != '')
-                    <img src="/uploads{{ $result['record']->CustGIDPicture1 }}" class="custPic" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="CustGIDPicture1" /> </p>
-                <h5>身份證照片 反面 </h5>
-                <p>
-                @if($result['record']->CustGIDPicture2 != '')
-                    <img src="/uploads{{ $result['record']->CustGIDPicture2 }}" class="custPic" /> <br />
-                @else
-                    無<br />
-                @endif
-                <!--
-                    <img src="https://www.ris.gov.tw/apply-idCard/resources/images/newid2-1.jpg" class="custPic" /> <br />
-                -->
-                    補件如下:
-                    <input type="file" name="CustGIDPicture2" />
-                </p>
-                <h5>申請書 </h5>
-                <p>
-                @if($result['record']->applyUploadPath != '')
-                    <img src="/uploads{{ $result['record']->applyUploadPath }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="applyUploadPath" />
-                </p>
-                <h5>財力證明 </h5>
-                <p>
-                @if($result['record']->proofOfProperty != '')
-                    <img src="/uploads{{ $result['record']->proofOfProperty }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="proofOfProperty" />
-                </p>
-                <h5>其他文件1 </h5>
-                <p>
-                @if($result['record']->otherDoc != '')
-                    <img src="/uploads{{ $result['record']->otherDoc }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
-                <h5>其他文件2 </h5>
-                <p>
-                @if($result['record']->otherDoc2 != '')
-                    <img src="/uploads{{ $result['record']->otherDoc2 }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
-                <h5>其他文件3 </h5>
-                <p>
-                @if($result['record']->otherDoc3 != '')
-                    <img src="/uploads{{ $result['record']->otherDoc3 }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
-                <h5>其他文件4 </h5>
-                <p>
-                @if($result['record']->otherDoc4 != '')
-                    <img src="/uploads{{ $result['record']->otherDoc4 }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
-                <h5>其他文件5 </h5>
-                <p>
-                @if($result['record']->otherDoc5 != '')
-                    <img src="/uploads{{ $result['record']->otherDoc5 }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
-                <h5>其他文件6 </h5>
-                <p>
-                @if($result['record']->otherDoc6 != '')
-                    <img src="/uploads{{ $result['record']->otherDoc6 }}" /> <br />
-                @else
-                    無<br />
-                @endif
-                    補件如下:
-                    <input type="file" name="otherDoc[]" />
-                </p>
                 <h5>經銷商</h5>
-                <p> <input type="text" name="dealer" value="{{ $result['record']->dealer }}" /> </p>
-                <h5>經銷商名稱</h5>
-                <p> <input type="text" name="dealerName" value="{{ $result['record']->dealerName }}" /> </p>
-                <h5>經辦廠商</h5>
-                <p> <input type="text" name="inCharge" value="{{ $result['record']->inCharge }}" /> </p>
-                <h5>經辦廠商名稱</h5>
-                <p> <input type="text" name="inChargeName" value="{{ $result['record']->inChargeName }}" /> </p>
-                <h5>受款廠商</h5>
-                <p> <input type="text" name="beneficiary" value="{{ $result['record']->beneficiary }}" /> </p>
-                <h5>受款廠商名稱</h5>
-                <p> <input type="text" name="beneficiaryName" value="{{ $result['record']->beneficiaryName }}" /> </p>
+                <p> <input type="text" name="SubId" value="{{ $result['record']->SubId }}" /> </p>
+                <h5>案件來源代號</h5>
+                <p> <input type="text" name="SubIdSource" value="{{ $result['record']->SubIdSource }}" /> </p>
+                <h5>受款廠商代號</h5>
+                <p> <input type="text" name="SubIdAcceptPayment" value="{{ $result['record']->SubIdAcceptPayment }}" /> </p>
                 <h5>準駁日期</h5>
-                <p> <input type="date" name="allowDate" value="{{ $result['record']->allowDateVal }}" /> </p>
-                <h5>商品</h5>
-                <p> <input type="text" name="product" value="{{ $result['record']->product}}" /> </p>
-                <h5>商品名稱</h5>
-                <p> <input type="text" name="productName" value="{{ $result['record']->productName }}" /> </p>
+                <p> <input type="date" name="CustAllowDenyTime" value="{{ $result['record']->CustAllowDenyTimeVal }}" /> </p>
+                <h5>商品型號</h5>
+                <p> <input type="text" name="CarModelType" value="{{ $result['record']->CarModelType}}" /> </p>
                 <h5>申貸金額</h5>
-                <p> <input type="text" name="applyAmount" value="{{ $result['record']->applyAmount }}" /> </p>
+                <p> <input type="text" name="CustLoanCash" value="{{ $result['record']->CustLoanCash }}" /> </p>
                 <h5>核貸金額</h5>
-                <p> <input type="text" name="loanAmount" value="{{ $result['record']->loanAmount }}" /> </p>
+                <p> <input type="text" name="CustFinalDeposit" value="{{ $result['record']->CustFinalDeposit }}" /> </p>
                 <h5>核准期數</h5>
-                <p> <input type="number" name="periods" value="{{ $result['record']->periods }}" /> </p>
+                <p> <input type="number" name="Term" value="{{ $result['record']->Term }}" /> </p>
                 <h5>期付金額</h5>
-                <p> <input type="text" name="periodAmount" value="{{ $result['record']->periodAmount }}" /> </p>
+                <p> <input type="text" name="TermAmount" value="{{ $result['record']->TermAmount }}" /> </p>
                 <h5>批單內容</h5>
-                <p> <textarea type="text" name="content" >{{ $result['record']->content }}</textarea> </p>
+                <p> <textarea type="text" name="AllowDenyDesc" >{{ $result['record']->AllowDenyDesc }}</textarea> </p>
                 <h5>撥款狀態</h5>
                 <p>
-                    <select name="schedule">
+                    <select name="CustPayStatus">
                         <option value="" ></option>
-                        <option value="核准" {{ $result['record']->schedule == '核准' ? 'selected="selected"' : '' }} >核准</option>
-                        <option value="已撥款"   {{ $result['record']->schedule == '已撥款' ? 'selected="selected"' : '' }} >已撥款</option>
+                        <option value="核准" {{ $result['record']->CustPayStatus == '核准' ? 'selected="selected"' : '' }} >核准</option>
+                        <option value="已撥款"   {{ $result['record']->CustPayStatus == '已撥款' ? 'selected="selected"' : '' }} >已撥款</option>
                     </select>
                 </p>
                 <h5>撥款日期</h5>
-                <p> <input type="date" name="grantDate" value="{{ $result['record']->grantDateVal }}" /> </p>
+                <p> <input type="date" name="MoneyCloseDate" value="{{ $result['record']->MoneyCloseDateVal }}" /> </p>
                 <h5>撥款金額</h5>
-                <p> <input type="text" name="grantAmount" value="{{ $result['record']->grantAmount }}" /> </p>
+                <p> <input type="text" name="ActualPayCarRetailer" value="{{ $result['record']->ActualPayCarRetailer }}" /> </p>
+                <h5>承辦廠商(經銷商)名稱</h5>
+                <p> <input type="text" name="SubIdName" value="{{ $result['record']->SubIdName }}" /> </p>
+                <h5>案件來源名稱</h5>
+                <p> <input type="text" name="SubIdSourceName" value="{{ $result['record']->SubIdSourceName }}" /> </p>
+                <h5>受款廠商名稱</h5>
+                <p> <input type="text" name="SubIdAcceptPaymentName" value="{{ $result['record']->SubIdAcceptPaymentName }}" /> </p>
                 <h5>車牌號碼</h5>
-                <p> <input type="text" name="liense" value="{{ $result['record']->liense }}" /> </p>
+                <p> <input type="text" name="Plate" value="{{ $result['record']->Plate }}" /> </p>
+                <h5>動產設定或說明</h5>
+                <p> <input type="text" name="CustProjectCategory" value="{{ $result['record']->CustProjectCategory }}" /> </p>
                 <h5>承辦廠商區域</h5>
                 <p> <input type="text" name="SubArea" value="{{ $result['record']->SubArea }}" /> </p>
-                <h5>動產設定</h5>
-                <p> <input type="text" name="ProjectCategory" value="{{ $result['record']->ProjectCategory }}" /> </p>
-                <h5>備註</h5>
-                <p> <textarea type="text" name="memo" >{{ $result['record']->memo }}</textarea> </p>
+                <h5>進件日期</h5>
+                <p> <input type="date" name="CustCreateTime" value="{{ $result['record']->CustCreateTimeVal }}" /> </p>
+                <h5>商品名稱</h5>
+                <p> <input type="text" name="CarModelName" value="{{ $result['record']->CarModelName }}" /> </p>
+                <h5>身分證字號</h5>
+                <p> <input type="text" name="CustGID" value="{{ $result['record']->CustGID }}" /> </p>
+                <h5>AppID</h5>
+                <p> <input type="text" name="AppID" value="{{ $result['record']->AppID }}" /> </p>
+                <h5>尚欠資料(文件歸檔備註)</h5>
+                <p> <input type="text" name="DocumentMemo" value="{{ $result['record']->DocumentMemo }}" /> </p>
+                <h5>專業別</h5>
+                <p> <input type="text" name="CustFinalProjectID" value="{{ $result['record']->CustFinalProjectID }}" /> </p>
+                <h5>管銷手續費</h5>
+                <p> <input type="text" name="CustFee" value="{{ $result['record']->CustFee }}" /> </p>
+                <h5>待補事項</h5>
+                <p> <input type="text" name="CustWaitCheckItem" value="{{ $result['record']->CustWaitCheckItem }}" /> </p>
+                <h5>申請書寄回日</h5>
+                <p> <input type="date" name="ApplicationReceivedDate" value="{{ $result['record']->ApplicationReceivedDateVal }}" /> </p>
+                <h5>行照回傳日</h5>
+                <p> <input type="date" name="LicenseReceivedDate" value="{{ $result['record']->LicenseReceivedDateVal }}" /> </p>
+                <h5>換補照日</h5>
+                <p> <input type="date" name="RenewalLicenseDate" value="{{ $result['record']->RenewalLicenseDateVal }}" /> </p>
+                <h5>For業務備註(黃批)</h5>
+                <p> <textarea type="text" name="ForSalesMemo" >{{ $result['record']->ForSalesMemo }}</textarea> </p>
+                <h5>設定費</h5>
+                <p> <input type="text" name="VehicleLoanFeeIn" value="{{ $result['record']->VehicleLoanFeeIn }}" /> </p>
+                <h5>保險專案</h5>
+                <p> <input type="text" name="Insurance" value="{{ $result['record']->Insurance }}" /> </p>
+                <h5>業務ID</h5>
+                <p> <input type="text" name="SalesID" value="{{ $result['record']->SalesID }}" /> </p>
+                <h5>業務名</h5>
+                <p> <input type="text" name="SalesName" value="{{ $result['record']->SalesName }}" /> </p>
+                <h5>首期繳款日</h5>
+                <p> <input type="date" name="FirstPayDate" value="{{ $result['record']->FirstPayDateVal }}" /> </p>
+                <h5>帳單地址</h5>
+                <p> <input type="text" name="CustBillAddress" value="{{ $result['record']->CustBillAddress }}" /> </p>
+                <h5>帳單郵寄日</h5>
+                <p> <input type="date" name="BillSendDate" value="{{ $result['record']->BillSendDateVal }}" /> </p>
+                <h5>ATM帳號</h5>
+                <p> <input type="text" name="ATMAccount" value="{{ $result['record']->ATMAccount }}" /> </p>
+                <h5>案件類別</h5>
+                <p> <input type="text" name="CaseCategoryType" value="{{ $result['record']->CaseCategoryType }}" /> </p>
+                <h5>申請書類別</h5>
+                <p> <input type="text" name="ApplicationType" value="{{ $result['record']->ApplicationType }}" /> </p>
+<!--
                 <p class=""> <button class="btn">更改</button> </p>
+-->
             </form>
 
+<!--
             <div class="leaveMessage">
                 <h4>留言</h4>
                 <div class="leaveMsgDiv">
@@ -203,6 +141,7 @@
                     <p class=""> <button class="btn">回覆</button> </p>
                 </form>
             </div>
+-->
             @endif
         </div>
     </body>

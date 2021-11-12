@@ -12,9 +12,11 @@
         <div class="content">
             <h3>廠商管理</h3>
             <div class="nav">
+<!--
                 <a href="/admin/companies/create" class="btn">
                     新增
                 </a>
+-->
             </div>
             <table class="table1">
                 <thead>
@@ -37,7 +39,9 @@
                         <td>{{ $company->updated_at }}</td>
                         <td>
                             <a href='/admin/companies/edit/{{ $company->id }}' class="glyphicon glyphicon-pencil"></a>
+<!--
                             <a href='/admin/companies/remove/{{ $company->id }}' class="glyphicon glyphicon-remove del"></a>
+-->
                         </td>
                     </tr>
                 @endforeach
