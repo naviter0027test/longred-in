@@ -37,9 +37,11 @@ Route::group(['prefix' => 'front'], function() {
 });
 
 Route::get('/fcm-test', 'AccountController@fcmTest');
+ */
 
 Route::group(['middleware' => ['check.account']], function() {
 
+    /*
     Route::get('/application', function () {
         return view('application');
     });
@@ -51,21 +53,24 @@ Route::group(['middleware' => ['check.account']], function() {
     Route::get('/application/cancel', 'ApplicationController@cancelPage');
     Route::post('/application/update', 'ApplicationController@update');
     Route::get('/application/update', 'ApplicationController@updatePage');
+     */
 
-    Route::group(['prefix' => 'account'], function() {
-        Route::get('login', 'AccountController@loginPage');
-        Route::post('login', 'AccountController@login');
-        Route::get('logout', 'AccountController@logout');
-        Route::get('get', 'AccountController@getMyData');
-        Route::get('apple-token/set', 'AccountController@appleTokenSetPage');
-        Route::post('apple-token/set', 'AccountController@appleTokenSet');
-        Route::get('apple-token/get', 'AccountController@appleTokenGet');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('login', 'UserController@loginPage');
+        Route::post('login', 'UserController@login');
+        Route::get('logout', 'UserController@logout');
+        Route::get('get', 'UserController@getMyData');
+        /*
+        Route::get('apple-token/set', 'UserController@appleTokenSetPage');
+        Route::post('apple-token/set', 'UserController@appleTokenSet');
+        Route::get('apple-token/get', 'UserController@appleTokenGet');
+         */
 
         Route::get('record', 'RecordController@index');
         Route::post('record', 'RecordController@get');
 
         Route::get('messages', 'MessageController@listsPage');
-        Route::get('message', 'MessageController@listsByAccountId');
+        Route::get('message', 'MessageController@listsByUserId');
         Route::get('message/read', 'MessageController@readPage');
         Route::post('message/read', 'MessageController@read');
         Route::get('message/send', 'MessageController@sendPage');
@@ -76,17 +81,18 @@ Route::group(['middleware' => ['check.account']], function() {
 
     Route::get('/api/help', 'AccountController@apiHelp');
 });
- */
-Route::group(['prefix' => 'account'], function() {
-    Route::get('isLogin', 'AccountController@isLogin');
-    Route::get('forget', 'AccountController@forgetPage');
-    Route::post('forget', 'AccountController@forget');
+Route::group(['prefix' => 'user'], function() {
+    Route::get('isLogin', 'UserController@isLogin');
+    Route::get('forget', 'UserController@forgetPage');
+    Route::post('forget', 'UserController@forget');
 });
 
+/*
 Route::group(['prefix' => 'telegram'], function() {
     Route::any('test', 'TelegramController@test');
     Route::get('login', 'TelegramController@login');
 });
+ */
 
 Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() {
 

@@ -90,4 +90,14 @@ class UserRepository
             throw new Exception('帳號不存在');
         $user->delete();
     }
+
+    public function checkPassword($params) {
+        $user = User::where('UserId', '=', $params['account'])
+            ->where('Password', '=', $params['password'])
+            ->first();
+        if(isset($user->id)) {
+            return $user;
+        }
+        return false;
+    }
 }

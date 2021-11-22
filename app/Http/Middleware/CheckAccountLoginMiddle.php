@@ -16,15 +16,14 @@ class CheckAccountLoginMiddle
      */
     public function handle($request, Closure $next)
     {
-        if(Session::has('account') == true) {
-            if($request->path() == 'account/login')
-                return redirect('/account/isLogin');
-                //return redirect('/application/create');
+        if(Session::has('user') == true) {
+            if($request->path() == 'user/login')
+                return redirect('/user/isLogin');
             return $next($request);
-        } else if($request->path() == 'account/login') {
+        } else if($request->path() == 'user/login') {
             return $next($request);
         }
 
-        return redirect('/account/isLogin');
+        return redirect('/user/isLogin');
     }
 }
