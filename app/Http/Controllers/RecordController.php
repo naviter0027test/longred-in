@@ -16,11 +16,11 @@ class RecordController extends Controller
         return view('account.record.search');
     }
      */
-    public function caseScheduleListPage(Request $request) {
+    public function caseSchedulePage(Request $request) {
         return view('user.case.schedule');
     }
 
-    public function caseScheduleList(Request $request) {
+    public function caseSchedule(Request $request) {
         $params = $request->all();
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
@@ -34,6 +34,34 @@ class RecordController extends Controller
             $recordRepository = new RecordRepository();
             $result['records'] = $recordRepository->caseScheduleList($user, $params);
             $result['amount'] = $recordRepository->caseScheduleListAmount($user, $params);
+            $result['nowPage'] = $nowPage;
+            $result['offset'] = $offset;
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
+
+    public function caseSearchPage(Request $request) {
+        return view('user.case.search');
+    }
+
+    public function caseSearch(Request $request) {
+        $params = $request->all();
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $user = Session::get('user');
+        $params['userId'] = $user->id;
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $recordRepository = new RecordRepository();
+            $result['records'] = $recordRepository->caseSearchList($user, $params);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }

@@ -9,11 +9,22 @@
     </head>
     <body>
         <div class="content">
-            <h3>查詢歸檔進度API模擬頁面</h3>
-            <form method='post' action='/user/case/schedule' class='form1' enctype="multipart/form-data">
+            <h3>案件查詢API模擬頁面</h3>
+            <form method='post' action='/user/case/search' class='form1' enctype="multipart/form-data">
                 <h5>關鍵字查詢</h5>
                 <p>
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="" />
+                </p>
+                <h5>案件狀態</h5>
+                <p> 
+                    <select name="CustProjectStatus" > 
+                        <option value=""></option>
+                        <option value="處理中">處理中</option>
+                        <option value="待核准">待核准</option>
+                        <option value="核准">核准</option>
+                        <option value="取消申辦">取消申辦</option>
+                        <option value="婉拒">婉拒</option>
+                    </select>
                 </p>
                 <h5>第幾頁</h5>
                 <p>

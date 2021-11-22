@@ -1187,6 +1187,47 @@ class RecordRepository
     }
 
     public function caseScheduleListAmount($user, $params) {
+        $recordQuery = Record::orderBy('CustAllowDenyTime', 'asc');
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+            });
+        }
+        if($user->Privileges != "ALL") {
+            $privileges = explode(',', $user->Privileges);
+            $recordQuery->whereIn('SalesID', $privileges);
+        }
+        return $recordQuery->count();
+    }
+
+    public function caseSearchList($user, $params) {
+        $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
+
+        $recordQuery = Record::orderBy('CustAllowDenyTime', 'desc')
+            ->skip(($nowPage-1) * $offset)
+            ->take($offset);
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+            });
+        }
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
+        }
+        if($user->Privileges != "ALL") {
+            $privileges = explode(',', $user->Privileges);
+            $recordQuery->whereIn('SalesID', $privileges);
+        }
+        $records = $recordQuery->get();
+        return $records;
+    }
+
+    public function caseSearchListAmount($user, $params) {
         $recordQuery = Record::orderBy('CustAllowDenyTime', 'desc');
         if(isset($params['keyword'])) {
             $recordQuery->where(function($query) use ($params) {
@@ -1194,6 +1235,9 @@ class RecordRepository
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
             });
+        }
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
