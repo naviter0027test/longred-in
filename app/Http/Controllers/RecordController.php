@@ -32,8 +32,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseScheduleList($params);
-            $result['amount'] = $recordRepository->caseScheduleListAmount($params);
+            $result['records'] = $recordRepository->caseScheduleList($user, $params);
+            $result['amount'] = $recordRepository->caseScheduleListAmount($user, $params);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
