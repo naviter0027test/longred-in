@@ -11,24 +11,29 @@ use Exception;
 
 class RecordController extends Controller
 {
+    /*
     public function index(Request $request) {
         return view('account.record.search');
     }
+     */
+    public function caseScheduleListPage(Request $request) {
+        return view('user.case.schedule');
+    }
 
-    public function get(Request $request) {
+    public function caseScheduleList(Request $request) {
         $params = $request->all();
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
-        $account = Session::get('account');
-        $params['accountId'] = $account->id;
+        $user = Session::get('user');
+        $params['userId'] = $user->id;
         $result = [
             'result' => true,
             'msg' => 'success',
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->lists($params);
-            $result['amount'] = $recordRepository->listsAmount($params);
+            $result['records'] = $recordRepository->caseScheduleList($params);
+            $result['amount'] = $recordRepository->caseScheduleListAmount($params);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }

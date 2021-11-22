@@ -66,8 +66,8 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::get('apple-token/get', 'UserController@appleTokenGet');
          */
 
-        Route::get('record', 'RecordController@index');
-        Route::post('record', 'RecordController@get');
+        Route::get('case/schedule/list', 'RecordController@caseScheduleListPage');
+        Route::post('case/schedule/list', 'RecordController@caseScheduleList');
 
         Route::get('messages', 'MessageController@listsPage');
         Route::get('message', 'MessageController@listsByUserId');

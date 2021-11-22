@@ -1163,4 +1163,34 @@ class RecordRepository
             break;
         }
     }
+
+    public function caseScheduleList($params) {
+        $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
+
+        $recordQuery = Record::orderBy('CustAllowDenyTime', 'asc')
+            ->skip(($nowPage-1) * $offset)
+            ->take($offset);
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+            });
+        }
+        $records = $recordQuery->get();
+        return $records;
+    }
+
+    public function caseScheduleListAmount($params) {
+        $recordQuery = Record::orderBy('CustAllowDenyTime', 'desc');
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+            });
+        }
+        return $recordQuery->count();
+    }
 }
