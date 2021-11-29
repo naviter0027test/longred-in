@@ -13,7 +13,6 @@ class AccountController extends Controller
     public function lists(Request $request) {
         $admin = Session::get('admin');
         $params = $request->all();
-        $keyword = isset($params['keyword']) ? $params['keyword'] : '';
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset =  isset($params['offset']) ? $params['offset'] : 10;
         $result = [
@@ -29,7 +28,7 @@ class AccountController extends Controller
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.user.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage, 'keyword' => $keyword]);
+        return view('admin.user.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage, 'params' => $params]);
     }
 
     public function createPage(Request $request) {

@@ -12,18 +12,20 @@
         <div class="content">
             <h3>廠商管理</h3>
             <div class="nav">
-<!--
+                <form method="get" action="/admin/companies/" class="searchBar">
+                    <input type="text" name="keyword" placeholder="關鍵字查詢" value="{{ isset($params['keyword']) ? $params['keyword'] : '' }}" />
+                    <button class="btn">查詢</button>
+                </form>
                 <a href="/admin/companies/create" class="btn">
                     新增
                 </a>
--->
             </div>
             <table class="table1">
                 <thead>
                     <tr>
                         <td>帳號</td>
                         <td>密碼</td>
-                        <td>使用者名稱</td>
+                        <td>廠商名稱</td>
                         <td>建立日期</td>
                         <td>修改日期</td>
                         <td>操作</td>
@@ -39,9 +41,7 @@
                         <td>{{ $company->updated_at }}</td>
                         <td>
                             <a href='/admin/companies/edit/{{ $company->id }}' class="glyphicon glyphicon-pencil"></a>
-<!--
                             <a href='/admin/companies/remove/{{ $company->id }}' class="glyphicon glyphicon-remove del"></a>
--->
                         </td>
                     </tr>
                 @endforeach

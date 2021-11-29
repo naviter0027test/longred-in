@@ -12,7 +12,10 @@ class UserRepository
         $keyword = isset($params['keyword']) ? $params['keyword'] : '';
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
-        $users = User::where('UserName', 'like', "%$keyword%")
+        $users = User::where(function ($query) use ($keyword) {
+                $query->orWhere('UserName', 'like', "%$keyword%");
+                //$query->orWhere('Area', 'like', "%$keyword%");
+            })
             ->orderBy('id', 'desc')
             ->skip(($nowPage-1) * $offset)
             ->take($offset)

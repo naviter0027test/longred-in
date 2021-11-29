@@ -28,7 +28,7 @@ class CompanyController extends Controller
             $result['result'] = false;
             $result['msg'] = $e->getMessage();
         }
-        return view('admin.company.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage]);
+        return view('admin.company.index', ['adm' => $admin, 'result' => $result, 'offset' => $offset, 'nowPage' => $nowPage, 'params' => $params]);
     }
 
     public function createPage(Request $request) {
