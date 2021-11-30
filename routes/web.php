@@ -70,6 +70,12 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::post('case/schedule', 'RecordController@caseSchedule');
         Route::get('case/search', 'RecordController@caseSearchPage');
         Route::post('case/search', 'RecordController@caseSearch');
+        Route::get('case/pay', 'RecordController@caseCustPayPage');
+        Route::post('case/pay', 'RecordController@caseCustPay');
+        Route::get('case/insurance', 'RecordController@caseInsurancePage');
+        Route::post('case/insurance', 'RecordController@caseInsurance');
+        Route::get('case/preorder', 'RecordController@casePreorderPage');
+        Route::post('case/preorder', 'RecordController@casePreorder');
 
         Route::get('messages', 'MessageController@listsPage');
         Route::get('message', 'MessageController@listsByUserId');

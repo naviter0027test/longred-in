@@ -71,4 +71,91 @@ class RecordController extends Controller
         }
         return json_encode($result);
     }
+
+    public function caseCustPayPage(Request $request) {
+        return view('user.case.pay');
+    }
+
+    public function caseCustPay(Request $request) {
+        $params = $request->all();
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $user = Session::get('user');
+        $params['userId'] = $user->id;
+        $params['orderName'] = 'CustAllowDenyTime';
+        $params['orderBy'] = 'asc';
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $recordRepository = new RecordRepository();
+            $result['records'] = $recordRepository->caseSearchList($user, $params);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['nowPage'] = $nowPage;
+            $result['offset'] = $offset;
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
+
+    public function caseInsurancePage(Request $request) {
+        return view('user.case.insurance');
+    }
+
+    public function caseInsurance(Request $request) {
+        $params = $request->all();
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $user = Session::get('user');
+        $params['userId'] = $user->id;
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $recordRepository = new RecordRepository();
+            $result['records'] = $recordRepository->caseSearchList($user, $params);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['nowPage'] = $nowPage;
+            $result['offset'] = $offset;
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
+
+    public function casePreorderPage(Request $request) {
+        return view('user.case.preorder');
+    }
+
+    public function casePreorder(Request $request) {
+        $params = $request->all();
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $user = Session::get('user');
+        $params['userId'] = $user->id;
+        $params['orderBy'] = 'asc';
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $recordRepository = new RecordRepository();
+            $result['records'] = $recordRepository->caseSearchList($user, $params);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['nowPage'] = $nowPage;
+            $result['offset'] = $offset;
+        }
+        catch(Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
 }

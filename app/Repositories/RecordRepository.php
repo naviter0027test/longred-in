@@ -1206,7 +1206,13 @@ class RecordRepository
         $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
 
-        $recordQuery = Record::orderBy('CustAllowDenyTime', 'desc')
+        $orderName = "CustAllowDenyTime";
+        $orderBy = "desc";
+        if(isset($params['orderName']))
+            $orderName = $params['orderName'];
+        if(isset($params['orderBy']))
+            $orderBy = $params['orderBy'];
+        $recordQuery = Record::orderBy($orderName, $orderBy)
             ->skip(($nowPage-1) * $offset)
             ->take($offset);
         if(isset($params['keyword'])) {
@@ -1219,6 +1225,12 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }
+        if(isset($params['CustPayStatus']) && trim($params['CustPayStatus']) != '') {
+            $recordQuery->where('CustPayStatus', '=', trim($params['CustPayStatus']));
+        }
+        if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
+            $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
+        }
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
             $recordQuery->whereIn('SalesID', $privileges);
@@ -1228,7 +1240,13 @@ class RecordRepository
     }
 
     public function caseSearchListAmount($user, $params) {
-        $recordQuery = Record::orderBy('CustAllowDenyTime', 'desc');
+        $orderName = "CustAllowDenyTime";
+        $orderBy = "desc";
+        if(isset($params['orderName']))
+            $orderName = $params['orderName'];
+        if(isset($params['orderBy']))
+            $orderBy = $params['orderBy'];
+        $recordQuery = Record::orderBy($orderName, $orderBy);
         if(isset($params['keyword'])) {
             $recordQuery->where(function($query) use ($params) {
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
@@ -1238,6 +1256,12 @@ class RecordRepository
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
+        }
+        if(isset($params['CustPayStatus']) && trim($params['CustPayStatus']) != '') {
+            $recordQuery->where('CustPayStatus', '=', trim($params['CustPayStatus']));
+        }
+        if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
+            $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
         }
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
