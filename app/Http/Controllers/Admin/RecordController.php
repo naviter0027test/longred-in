@@ -14,7 +14,7 @@ class RecordController extends Controller
     public function index(Request $request) {
         $params = $request->all();
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
-        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $offset = isset($params['offset']) ? $params['offset'] : 100;
         $admin = Session::get('admin');
         $result = [
             'result' => true,

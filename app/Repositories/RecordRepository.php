@@ -146,9 +146,6 @@ class RecordRepository
         if(isset($params['dealer']) && trim($params['dealer']) != '') {
             $recordQuery->where('dealer', 'like', "%". $params['dealer']. "%");
         }
-        if(isset($params['checkStatus']) && trim($params['checkStatus']) != '') {
-            $recordQuery->where('checkStatus', '=', $params['checkStatus']);
-        }
         if(isset($params['schedule']) && trim($params['schedule']) != '') {
             $recordQuery->where('schedule', '=', $params['schedule']);
         }
@@ -160,13 +157,6 @@ class RecordRepository
             $endDate = $params['endDate']. ' 23:59:59';
             $recordQuery->where('created_at', '<=', $endDate);
         }
-        if(isset($params['keyword'])) {
-            $recordQuery->where(function($query) use ($params) {
-                $query->orWhere('applicant', 'like', '%'. $params['keyword']. '%');
-                $query->orWhere('CustGID', 'like', '%'. $params['keyword']. '%');
-                $query->orWhere('productName', 'like', '%'. $params['keyword']. '%');
-            });
-        }
         if(isset($params['accountId'])) {
             $account = Account::where('id', '=', $params['accountId'])
                 ->first();
@@ -176,6 +166,16 @@ class RecordRepository
             });
         }
          */
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where('CustProjectStatus', '=', $params['CustProjectStatus']);
+        }
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubArea', 'like', '%'. $params['keyword']. '%');
+            });
+        }
         $records = $recordQuery->get();
         /*
         foreach($records as $record) {
@@ -196,14 +196,11 @@ class RecordRepository
     }
 
     public function listsAmount($params) {
-        $recordQuery = Record::orderBy('id', 'desc');
+        $recordQuery = Record::orderBy('CustCreateTime', 'desc');
         $startDate = date('Y-m-d 00:00:00', strtotime('-3 months'));
         /*
         if(isset($params['dealer']) && trim($params['dealer']) != '') {
             $recordQuery->where('dealer', 'like', "%". $params['dealer']. "%");
-        }
-        if(isset($params['checkStatus']) && trim($params['checkStatus']) != '') {
-            $recordQuery->where('checkStatus', '=', $params['checkStatus']);
         }
         if(isset($params['schedule']) && trim($params['schedule']) != '') {
             $recordQuery->where('schedule', '=', $params['schedule']);
@@ -216,13 +213,6 @@ class RecordRepository
             $endDate = $params['endDate']. ' 23:59:59';
             $recordQuery->where('created_at', '<=', $endDate);
         }
-        if(isset($params['keyword'])) {
-            $recordQuery->where(function($query) use ($params) {
-                $query->orWhere('applicant', 'like', '%'. $params['keyword']. '%');
-                $query->orWhere('CustGID', 'like', '%'. $params['keyword']. '%');
-                $query->orWhere('productName', 'like', '%'. $params['keyword']. '%');
-            });
-        }
         if(isset($params['accountId'])) {
             $account = Account::where('id', '=', $params['accountId'])
                 ->first();
@@ -232,6 +222,16 @@ class RecordRepository
             });
         }
          */
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where('CustProjectStatus', '=', $params['CustProjectStatus']);
+        }
+        if(isset($params['keyword'])) {
+            $recordQuery->where(function($query) use ($params) {
+                $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubArea', 'like', '%'. $params['keyword']. '%');
+            });
+        }
         return $recordQuery->count();
     }
 

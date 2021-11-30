@@ -17,16 +17,16 @@
                     <input type="file" name="importCSV" class="importCSV" />
                 </form>
                 <form method="get" action="/admin/record" class="searchBar">
-<!--
                     案件狀態
-                    <select name="checkStatus">
+                    <select name="CustProjectStatus">
                         <option value=""  >請選擇</option>
-                        <option value="處理中"  {{ isset($params['checkStatus']) && $params['checkStatus'] == "處理中" ? 'selected="selected"' : '' }}  >處理中</option>
-                        <option value="待核准"  {{ isset($params['checkStatus']) && $params['checkStatus'] == "待核准" ? 'selected="selected"' : '' }}  >待核准</option>
-                        <option value="核准"    {{ isset($params['checkStatus']) && $params['checkStatus'] == "核准" ? 'selected="selected"' : '' }}    >核准</option>
-                        <option value="取消申辦" {{ isset($params['checkStatus']) && $params['checkStatus'] == "取消申辦" ? 'selected="selected"' : '' }}>取消申辦</option>
-                        <option value="婉拒"    {{ isset($params['checkStatus']) && $params['checkStatus'] == "婉拒" ? 'selected="selected"' : '' }}    >婉拒</option>
+                        <option value="處理中"  {{ isset($params['CustProjectStatus']) && $params['CustProjectStatus'] == "處理中" ? 'selected="selected"' : '' }}  >處理中</option>
+                        <option value="待核准"  {{ isset($params['CustProjectStatus']) && $params['CustProjectStatus'] == "待核准" ? 'selected="selected"' : '' }}  >待核准</option>
+                        <option value="核准"    {{ isset($params['CustProjectStatus']) && $params['CustProjectStatus'] == "核准" ? 'selected="selected"' : '' }}    >核准</option>
+                        <option value="取消申辦" {{ isset($params['CustProjectStatus']) && $params['CustProjectStatus'] == "取消申辦" ? 'selected="selected"' : '' }}>取消申辦</option>
+                        <option value="婉拒"    {{ isset($params['CustProjectStatus']) && $params['CustProjectStatus'] == "婉拒" ? 'selected="selected"' : '' }}    >婉拒</option>
                     </select>
+<!--
                     撥款狀態
                     <select name="schedule">
                         <option value=""  >請選擇</option>
@@ -39,9 +39,9 @@
                     <input type="date" name="endDate" value="{{ isset($params['endDate']) ? $params['endDate'] : '' }}" />
                     <br />
                     <input type="text" name="dealer" placeholder="經銷商" value="{{ isset($params['dealer']) ? $params['dealer'] : '' }}" />
+-->
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="{{ isset($params['keyword']) ? $params['keyword'] : '' }}" />
                     <button class="btn">查詢</button>
--->
                 </form>
 <!--
                 <a href="#" class="importBtn btn">
