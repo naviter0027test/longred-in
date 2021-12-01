@@ -174,6 +174,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $params['CustProjectStatus'] = '核准';
         $params['userId'] = $user->id;
         $params['orderBy'] = 'asc';
         $result = [

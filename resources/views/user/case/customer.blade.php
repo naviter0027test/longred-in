@@ -10,7 +10,7 @@
     <body>
         <div class="content">
             <h3>客戶繳款資訊查詢API模擬頁面</h3>
-            <form method='post' action='/user/case/insurance' class='form1' enctype="multipart/form-data">
+            <form method='post' action='/user/case/customer' class='form1' enctype="multipart/form-data">
                 <h5>關鍵字查詢</h5>
                 <p>
                     <input type="text" name="customerKeyword" placeholder="關鍵字查詢" value="" />

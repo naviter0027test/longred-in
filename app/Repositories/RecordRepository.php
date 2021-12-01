@@ -1223,7 +1223,7 @@ class RecordRepository
         $recordQuery = Record::orderBy($orderName, $orderBy)
             ->skip(($nowPage-1) * $offset)
             ->take($offset);
-        if(isset($params['keyword'])) {
+        if(isset($params['keyword']) && trim($params['keyword']) != '') {
             $recordQuery->where(function($query) use ($params) {
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
@@ -1235,6 +1235,8 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['customerKeyword']. '%');
                 $query->orWhere('Plate', 'like', '%'. $params['customerKeyword']. '%');
                 $query->orWhere('CustGID', 'like', '%'. $params['customerKeyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['customerKeyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['customerKeyword']. '%');
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
@@ -1270,7 +1272,7 @@ class RecordRepository
         if(isset($params['orderBy']) && trim($params['orderBy']) != '')
             $orderBy = $params['orderBy'];
         $recordQuery = Record::orderBy($orderName, $orderBy);
-        if(isset($params['keyword'])) {
+        if(isset($params['keyword']) && trim($params['keyword']) != '') {
             $recordQuery->where(function($query) use ($params) {
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
@@ -1282,6 +1284,8 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['customerKeyword']. '%');
                 $query->orWhere('Plate', 'like', '%'. $params['customerKeyword']. '%');
                 $query->orWhere('CustGID', 'like', '%'. $params['customerKeyword']. '%');
+                $query->orWhere('SubIdName', 'like', '%'. $params['customerKeyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['customerKeyword']. '%');
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
