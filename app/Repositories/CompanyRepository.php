@@ -40,6 +40,8 @@ class CompanyRepository
         $company->UserId = $companyTmp;
         $company->Password = isset($params['Password']) ? $params['Password'] : '';
         $company->UserName = isset($params['UserName']) ? $params['UserName'] : '';
+        $company->Address = isset($params['Address']) ? $params['Address'] : '';
+        $company->Tel = isset($params['Tel']) ? $params['Tel'] : '';
         $company->created_at = date('Y-m-d H:i:s');
         $company->updated_at = date('Y-m-d H:i:s');
         $company->save();
@@ -62,6 +64,8 @@ class CompanyRepository
         }
         $company->Password = isset($params['Password']) ? $params['Password'] : '';
         $company->UserName = isset($params['UserName']) ? $params['UserName'] : '';
+        $company->Address = isset($params['Address']) ? $params['Address'] : '';
+        $company->Tel = isset($params['Tel']) ? $params['Tel'] : '';
         $company->updated_at = date('Y-m-d H:i:s');
 
         $company->save();

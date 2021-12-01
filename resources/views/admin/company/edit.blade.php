@@ -22,6 +22,10 @@
                 <p> <input type="text" name="Password" value="{{ $result['company']->Password }}" /> </p>
                 <h5>廠商名稱</h5>
                 <p> <input type="text" name="UserName" value="{{ $result['company']->UserName }}" /> </p>
+                <h5>地址</h5>
+                <p> <input type="text" name="Address" value="{{ $result['company']->Address }}" /> </p>
+                <h5>電話</h5>
+                <p> <input type="text" name="Tel" value="{{ $result['company']->Tel }}" /> </p>
                 <p class=""> <button class="btn">更改</button> </p>
             </form>
 

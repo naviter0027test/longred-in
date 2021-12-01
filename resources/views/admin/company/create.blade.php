@@ -17,8 +17,12 @@
                 <p> <input type="text" name="UserId" required /> </p>
                 <h5>密碼</h5>
                 <p> <input type="password" name="Password" required /> </p>
-                <h5>名稱</h5>
+                <h5>廠商名稱</h5>
                 <p> <input type="text" name="UserName" /> </p>
+                <h5>地址</h5>
+                <p> <input type="text" name="Address" /> </p>
+                <h5>電話</h5>
+                <p> <input type="text" name="Tel" /> </p>
                 <p class=""> <button class="btn">新增</button> </p>
             </form>
         </div>
