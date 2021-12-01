@@ -99,4 +99,26 @@ class CompanyRepository
         }
         $company->delete();
     }
+
+    public function listsByApi($user, $params) {
+        $keyword = isset($params['keyword']) ? $params['keyword'] : '';
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $companies = Company::where('UserName', 'like', "%$keyword%")
+            ->orderBy('id', 'desc')
+            ->skip(($nowPage-1) * $offset)
+            ->take($offset)
+            ->get();
+        if(isset($companies[0])) {
+            return $companies;
+        }
+        return [];
+    }
+
+    public function listsByApiAmount($user, $params) {
+        $keyword = isset($params['keyword']) ? $params['keyword'] : '';
+        $amount = Company::where('UserName', 'like', "%$keyword%")
+            ->count();
+        return $amount;
+    }
 }

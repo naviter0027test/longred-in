@@ -78,6 +78,8 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::post('case/preorder', 'RecordController@casePreorder');
         Route::get('case/customer', 'RecordController@caseCustomerPage');
         Route::post('case/customer', 'RecordController@caseCustomer');
+        Route::get('companies', 'CompanyController@indexPage');
+        Route::post('companies', 'CompanyController@index');
 
         Route::get('messages', 'MessageController@listsPage');
         Route::get('message', 'MessageController@listsByUserId');
