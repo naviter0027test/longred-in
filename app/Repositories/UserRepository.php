@@ -103,4 +103,18 @@ class UserRepository
         }
         return false;
     }
+
+    public function getPrivileges($user) {
+        $privilegesUsers = [];
+        if(trim($user->Privileges) != 'ALL') {
+            $privilegesArr = explode(',', $user->Privileges);
+            $privilegesUsers = User::whereIn('UserId', $privilegesArr)
+                ->select(['UserId', 'UserName'])
+                ->get();
+        } else {
+            $privilegesUsers = User::select(['UserId', 'UserName'])
+                ->get();
+        }
+        return $privilegesUsers;
+    }
 }

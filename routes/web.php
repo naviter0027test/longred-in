@@ -60,6 +60,10 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::post('login', 'UserController@login');
         Route::get('logout', 'UserController@logout');
         Route::get('get', 'UserController@getMyData');
+        Route::get('privileges', 'UserController@privileges');
+        Route::get('privileges/setsee', 'UserController@privilegesSetSeePage');
+        Route::post('privileges/setsee', 'UserController@privilegesSetSee');
+        Route::get('privileges/getsee', 'UserController@privilegesGetSee');
         /*
         Route::get('apple-token/set', 'UserController@appleTokenSetPage');
         Route::post('apple-token/set', 'UserController@appleTokenSet');

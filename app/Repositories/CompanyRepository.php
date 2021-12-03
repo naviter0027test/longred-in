@@ -109,6 +109,14 @@ class CompanyRepository
             ->skip(($nowPage-1) * $offset)
             ->take($offset)
             ->get();
+        foreach($companies as $i => $company) {
+            $companyAttr = $company->getAttributes();
+            foreach($companyAttr as $key => $value) {
+                if(is_null($value)) {
+                    $companies[$i]->{$key} = '';
+                }
+            }
+        }
         if(isset($companies[0])) {
             return $companies;
         }

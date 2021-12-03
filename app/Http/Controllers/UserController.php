@@ -73,4 +73,58 @@ class UserController extends Controller
         }
         return json_encode($result);
     }
+
+    public function privileges(Request $request) {
+        $result = [
+            'status' => true,
+            'msg' => 'success'
+        ];
+        $userRepository = new UserRepository();
+        $user = Session::get('user');
+        $result['privileges'] = $userRepository->getPrivileges($user);
+        return json_encode($result);
+    }
+
+    public function privilegesSetSeePage(Request $request) {
+        return view('user.setsee');
+    }
+
+    public function privilegesSetSee(Request $request) {
+        $result = [
+            'status' => true,
+            'msg' => 'success'
+        ];
+        try {
+            $params = $request->all();
+            $user = Session::get('user');
+            if(trim($user->Privileges) != 'ALL') {
+                $userPrivileges = explode(',', $user->Privileges);
+                foreach($params['privileges'] as $privilege) {
+                    if(is_null($privilege) == true)
+                        continue;
+                    if(in_array($privilege, $userPrivileges) == false) {
+                        throw new Exception("this [$privilege] is not in user privileges 該權限非屬於此業務員的");
+                    }
+                }
+            }
+            foreach($params['privileges'] as $i => $privilege) {
+                if(is_null($privilege) == true)
+                    unset($params['privileges'][$i]);
+            }
+            Session::put('seePrivileges', $params['privileges']);
+        } catch (Exception $e) {
+            $result['status'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
+
+    public function privilegesGetSee(Request $request) {
+        $result = [
+            'status' => true,
+            'msg' => 'success'
+        ];
+        $result['privileges'] = Session::get('seePrivileges');
+        return json_encode($result);
+    }
 }
