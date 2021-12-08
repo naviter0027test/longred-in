@@ -1164,7 +1164,7 @@ class RecordRepository
         }
     }
 
-    public function caseScheduleList($user, $params) {
+    public function caseScheduleList($user, $params, $privileges) {
         $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
 
@@ -1178,10 +1178,13 @@ class RecordRepository
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
             });
         }
+        /*
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
             $recordQuery->whereIn('SalesID', $privileges);
         }
+         */
+        $recordQuery->whereIn('SalesID', $privileges);
         $records = $recordQuery->get();
         foreach($records as $i => $record) {
             $recordAttr = $record->getAttributes();
@@ -1194,7 +1197,7 @@ class RecordRepository
         return $records;
     }
 
-    public function caseScheduleListAmount($user, $params) {
+    public function caseScheduleListAmount($user, $params, $privileges) {
         $recordQuery = Record::orderBy('CustAllowDenyTime', 'asc');
         if(isset($params['keyword'])) {
             $recordQuery->where(function($query) use ($params) {
@@ -1203,14 +1206,17 @@ class RecordRepository
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
             });
         }
+        /*
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
             $recordQuery->whereIn('SalesID', $privileges);
         }
+         */
+        $recordQuery->whereIn('SalesID', $privileges);
         return $recordQuery->count();
     }
 
-    public function caseSearchList($user, $params) {
+    public function caseSearchList($user, $params, $privileges) {
         $nowPage = isset($params['nowPage']) ? (int) $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? (int) $params['offset'] : 100;
 
@@ -1248,10 +1254,13 @@ class RecordRepository
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
         }
+        /*
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
             $recordQuery->whereIn('SalesID', $privileges);
         }
+         */
+        $recordQuery->whereIn('SalesID', $privileges);
         $records = $recordQuery->get();
         foreach($records as $i => $record) {
             $recordAttr = $record->getAttributes();
@@ -1264,7 +1273,7 @@ class RecordRepository
         return $records;
     }
 
-    public function caseSearchListAmount($user, $params) {
+    public function caseSearchListAmount($user, $params, $privileges) {
         $orderName = "CustAllowDenyTime";
         $orderBy = "desc";
         if(isset($params['orderName']) && trim($params['orderName']) != '')
@@ -1297,10 +1306,13 @@ class RecordRepository
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
         }
+        /*
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
             $recordQuery->whereIn('SalesID', $privileges);
         }
+         */
+        $recordQuery->whereIn('SalesID', $privileges);
         return $recordQuery->count();
     }
 }

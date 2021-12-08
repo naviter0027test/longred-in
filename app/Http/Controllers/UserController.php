@@ -41,6 +41,18 @@ class UserController extends Controller
                 $userRepository->appleTokenSet($user->id, $params['appleToken'], $params['tokenMode']);
             }
              */
+            if(trim($user->Privileges) != 'ALL') {
+                $privilegesArr = explode(',', $user->Privileges);
+                Session::put('seePrivileges', $privilegesArr);
+            }
+            else {
+                $privileges = $userRepository->getPrivileges($user);
+                $privilegesArr = [];
+                foreach($privileges as $privilege) {
+                    $privilegesArr[] = $privilege['UserId'];
+                }
+                Session::put('seePrivileges', $privilegesArr);
+            }
             $result = [
                 'status' => true,
                 'msg' => 'login success',

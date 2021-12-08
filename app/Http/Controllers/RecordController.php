@@ -26,6 +26,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $result = [
             'result' => true,
@@ -33,8 +34,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseScheduleList($user, $params);
-            $result['amount'] = $recordRepository->caseScheduleListAmount($user, $params);
+            $result['records'] = $recordRepository->caseScheduleList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseScheduleListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
@@ -55,6 +56,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $result = [
             'result' => true,
@@ -62,8 +64,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseSearchList($user, $params);
-            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['records'] = $recordRepository->caseSearchList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
@@ -84,6 +86,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $params['orderName'] = 'CustAllowDenyTime';
         $params['orderBy'] = 'asc';
@@ -93,8 +96,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseSearchList($user, $params);
-            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['records'] = $recordRepository->caseSearchList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
@@ -115,6 +118,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $result = [
             'result' => true,
@@ -122,8 +126,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseSearchList($user, $params);
-            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['records'] = $recordRepository->caseSearchList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
@@ -144,6 +148,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $params['orderBy'] = 'asc';
         $result = [
@@ -152,8 +157,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseSearchList($user, $params);
-            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['records'] = $recordRepository->caseSearchList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
@@ -174,6 +179,7 @@ class RecordController extends Controller
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         $params['CustProjectStatus'] = '核准';
         $params['userId'] = $user->id;
         $params['orderBy'] = 'asc';
@@ -183,8 +189,8 @@ class RecordController extends Controller
         ];
         try {
             $recordRepository = new RecordRepository();
-            $result['records'] = $recordRepository->caseSearchList($user, $params);
-            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params);
+            $result['records'] = $recordRepository->caseSearchList($user, $params, $privileges);
+            $result['amount'] = $recordRepository->caseSearchListAmount($user, $params, $privileges);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }
