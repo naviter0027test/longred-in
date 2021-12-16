@@ -24,6 +24,7 @@
                         <option value="核准">核准</option>
                         <option value="取消申辦">取消申辦</option>
                         <option value="婉拒">婉拒</option>
+                        <option value="婉拒取消">婉拒取消</option>
                     </select>
                 </p>
                 <h5>第幾頁</h5>

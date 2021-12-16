@@ -1246,10 +1246,29 @@ class RecordRepository
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
-            $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
+            if(trim($params['CustProjectStatus']) == '婉拒取消')
+                $recordQuery->whereIn('CustProjectStatus', ['婉拒', '取消申辦']);
+            else
+                $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }
         if(isset($params['CustPayStatus']) && trim($params['CustPayStatus']) != '') {
             $recordQuery->where('CustPayStatus', '=', trim($params['CustPayStatus']));
+        }
+        if(isset($params['PayPageStatus']) && trim($params['PayPageStatus']) != '') {
+            switch($params['PayPageStatus']) {
+            case '全部':
+                break;
+            case '已撥款':
+                $recordQuery->where('CustPayStatus', '=', '已撥款');
+                break;
+            case '缺資料未撥款':
+                $recordQuery->where('DocumentMemo', '<>', '');
+                break;
+            case '資料已齊待撥款':
+                $recordQuery->where('CustPayStatus', '=', '已撥款');
+                $recordQuery->where('DocumentMemo', '=', '');
+                break;
+            }
         }
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
@@ -1298,10 +1317,29 @@ class RecordRepository
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
-            $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
+            if(trim($params['CustProjectStatus']) == '婉拒取消')
+                $recordQuery->whereIn('CustProjectStatus', ['婉拒', '取消申辦']);
+            else
+                $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }
         if(isset($params['CustPayStatus']) && trim($params['CustPayStatus']) != '') {
             $recordQuery->where('CustPayStatus', '=', trim($params['CustPayStatus']));
+        }
+        if(isset($params['PayPageStatus']) && trim($params['PayPageStatus']) != '') {
+            switch($params['PayPageStatus']) {
+            case '全部':
+                break;
+            case '已撥款':
+                $recordQuery->where('CustPayStatus', '=', '已撥款');
+                break;
+            case '缺資料未撥款':
+                $recordQuery->where('DocumentMemo', '<>', '');
+                break;
+            case '資料已齊待撥款':
+                $recordQuery->where('CustPayStatus', '=', '已撥款');
+                $recordQuery->where('DocumentMemo', '=', '');
+                break;
+            }
         }
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));

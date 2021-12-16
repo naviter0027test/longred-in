@@ -15,12 +15,21 @@
                 <p>
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="" />
                 </p>
-                <h5>案件狀態</h5>
+                <h5>撥款狀態</h5>
                 <p> 
                     <select name="CustPayStatus" > 
                         <option value=""></option>
                         <option value="核准">核准</option>
                         <option value="已撥款">已撥款</option>
+                    </select>
+                </p>
+                <h5>頁面狀態</h5>
+                <p> 
+                    <select name="PayPageStatus" > 
+                        <option value="全部">全部</option>
+                        <option value="已撥款">已撥款</option>
+                        <option value="缺資料未撥款">缺資料未撥款</option>
+                        <option value="資料已齊待撥款">資料已齊待撥款</option>
                     </select>
                 </p>
                 <h5>第幾頁</h5>
