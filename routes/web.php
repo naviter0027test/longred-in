@@ -85,6 +85,10 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::get('companies', 'CompanyController@indexPage');
         Route::post('companies', 'CompanyController@index');
 
+        Route::get('staging', 'StagingController@index');
+        Route::get('staging/upload', 'StagingController@uploadPage');
+        Route::post('staging/upload', 'StagingController@upload');
+
         Route::get('messages', 'MessageController@listsPage');
         Route::get('message', 'MessageController@listsByUserId');
         Route::get('message/read', 'MessageController@readPage');
