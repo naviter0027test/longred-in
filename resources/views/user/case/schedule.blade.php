@@ -15,6 +15,18 @@
                 <p>
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="" />
                 </p>
+                <h5>狀態</h5>
+                <p>
+                    <select type="text" name="CustProjectStatus" >
+                        <option value=""></option>
+                        <option value="核准無缺">核准無缺</option>
+                        <option value="處理中">處理中</option>
+                        <option value="待核准">待核准</option>
+                        <option value="核准">核准</option>
+                        <option value="取消申辦">取消申辦</option>
+                        <option value="婉拒">婉拒</option>
+                    </select>
+                </p>
                 <h5>第幾頁</h5>
                 <p>
                     <input type="number" name="nowPage" value="1" />

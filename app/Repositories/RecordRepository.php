@@ -1178,6 +1178,15 @@ class RecordRepository
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
             });
         }
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where(function($query) use ($params) {
+                if($params['CustProjectStatus'] == '核准無缺') {
+                    $query->orWhere('CustProjectStatus', '=', '核准');
+                    $query->orWhere('DocumentMemo', '<>', '');
+                } else
+                    $query->orWhere('CustProjectStatus', 'like', '%'. $params['CustProjectStatus']. '%');
+            });
+        }
         /*
         if($user->Privileges != "ALL") {
             $privileges = explode(',', $user->Privileges);
@@ -1204,6 +1213,15 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+            });
+        }
+        if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
+            $recordQuery->where(function($query) use ($params) {
+                if($params['CustProjectStatus'] == '核准無缺') {
+                    $query->orWhere('CustProjectStatus', '=', '核准');
+                    $query->orWhere('DocumentMemo', '<>', '');
+                } else
+                    $query->orWhere('CustProjectStatus', 'like', '%'. $params['CustProjectStatus']. '%');
             });
         }
         /*
