@@ -1305,6 +1305,26 @@ class RecordRepository
                 if(is_null($value)) {
                     $records[$i]->{$key} = '';
                 }
+                if($key == 'ApplicationReceivedDate') {
+                    $records[$i]->ApplicationReceivedDate2 = '';
+                    if(trim($value) != '')
+                        $records[$i]->ApplicationReceivedDate2 = date('Y/m/d', strtotime($value));
+                }
+                if($key == 'LicenseReceivedDate') {
+                    $records[$i]->LicenseReceivedDate2 = '';
+                    if(trim($value) != '')
+                        $records[$i]->LicenseReceivedDate2 = date('Y/m/d', strtotime($value));
+                }
+                if($key == 'RenewalLicenseDate') {
+                    $records[$i]->RenewalLicenseDate2 = '';
+                    if(trim($value) != '')
+                        $records[$i]->RenewalLicenseDate2 = date('Y/m/d', strtotime($value));
+                }
+                if($key == 'MoneyCloseDate') {
+                    $records[$i]->MoneyCloseDate2 = '';
+                    if(trim($value) != '')
+                        $records[$i]->MoneyCloseDate2 = date('Y/m/d', strtotime($value));
+                }
             }
         }
         return $records;
