@@ -1391,4 +1391,8 @@ class RecordRepository
         $recordQuery->whereIn('SalesID', $privileges);
         return $recordQuery->count();
     }
+
+    public function recordClear() {
+        Record::query()->delete();
+    }
 }
