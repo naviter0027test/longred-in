@@ -319,7 +319,7 @@ class RecordRepository
                 $record->RenewalLicenseDate = $RenewalLicenseDate;
             }
             $record->ForSalesMemo = (isset($row[34]) ? $row[34] : '');
-            $record->VehicleLoanFeeIn = (isset($row[35]) ? intval($row[35]) : 0);
+            $record->VehicleLoanFeeIn = (isset($row[35]) ? intval(preg_replace('/,/', '', $row[35])) : 0);
             $record->Insurance = (isset($row[36]) ? $row[36] : '');
             $record->SalesID = (isset($row[37]) ? intval($row[37]) : 0);
             $record->SalesName = (isset($row[38]) ? $row[38] : '');
@@ -390,7 +390,7 @@ class RecordRepository
                 $record->RenewalLicenseDate = $RenewalLicenseDate;
             }
             $record->ForSalesMemo = (isset($row[34]) ? $row[34] : '');
-            $record->VehicleLoanFeeIn = (isset($row[35]) ? intval($row[35]) : 0);
+            $record->VehicleLoanFeeIn = (isset($row[35]) ? intval(preg_replace('/,/', '', $row[35])) : 0);
             $record->Insurance = (isset($row[36]) ? $row[36] : '');
             $record->SalesID = (isset($row[37]) ? intval($row[37]) : 0);
             $record->SalesName = (isset($row[38]) ? $row[38] : '');
@@ -1201,6 +1201,13 @@ class RecordRepository
                 if(is_null($value)) {
                     $records[$i]->{$key} = '';
                 }
+                if($key == 'AllowDenyDesc') {
+                    $records[$i]->AllowDenyDesc2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->AllowDenyDesc2 = $records[$i]->AllowDenyDesc;
+                        $records[$i]->AllowDenyDesc = preg_replace("/\|/", "\r", $value);
+                    }
+                }
             }
         }
         return $records;
@@ -1266,6 +1273,17 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             if(trim($params['CustProjectStatus']) == '婉拒取消')
                 $recordQuery->whereIn('CustProjectStatus', ['婉拒', '取消申辦']);
+            else if(trim($params['CustProjectStatus']) == '核准動產') {
+                $recordQuery->whereIn('CustProjectStatus', ['核准']);
+                $recordQuery->where(function($query) use ($params) {
+                    $query->orWhere('DocumentMemo', '=', '動產設定');
+                    $query->orWhere('Insurance', '<>', '');
+                });
+            }
+            else if(trim($params['CustProjectStatus']) == '預購車預設') {
+                $recordQuery->whereIn('CustProjectStatus', ['核准']);
+                $recordQuery->where('CaseCategoryType', '=', '預購/缺車');
+            }
             else
                 $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }
@@ -1307,23 +1325,52 @@ class RecordRepository
                 }
                 if($key == 'ApplicationReceivedDate') {
                     $records[$i]->ApplicationReceivedDate2 = '';
-                    if(trim($value) != '')
-                        $records[$i]->ApplicationReceivedDate2 = date('Y/m/d', strtotime($value));
+                    if(trim($value) != '') {
+                        $records[$i]->ApplicationReceivedDate2 = $records[$i]->ApplicationReceivedDate;
+                        $records[$i]->ApplicationReceivedDate = date('Y/m/d', strtotime($value));
+                    }
                 }
                 if($key == 'LicenseReceivedDate') {
                     $records[$i]->LicenseReceivedDate2 = '';
-                    if(trim($value) != '')
-                        $records[$i]->LicenseReceivedDate2 = date('Y/m/d', strtotime($value));
+                    if(trim($value) != '') {
+                        $records[$i]->LicenseReceivedDate2 = $records[$i]->LicenseReceivedDate;
+                        $records[$i]->LicenseReceivedDate = date('Y/m/d', strtotime($value));
+                    }
                 }
                 if($key == 'RenewalLicenseDate') {
                     $records[$i]->RenewalLicenseDate2 = '';
-                    if(trim($value) != '')
-                        $records[$i]->RenewalLicenseDate2 = date('Y/m/d', strtotime($value));
+                    if(trim($value) != '') {
+                        $records[$i]->RenewalLicenseDate2 = $records[$i]->RenewalLicenseDate;
+                        $records[$i]->RenewalLicenseDate = date('Y/m/d', strtotime($value));
+                    }
                 }
                 if($key == 'MoneyCloseDate') {
                     $records[$i]->MoneyCloseDate2 = '';
-                    if(trim($value) != '')
-                        $records[$i]->MoneyCloseDate2 = date('Y/m/d', strtotime($value));
+                    if(trim($value) != '') {
+                        $records[$i]->MoneyCloseDate2 = $records[$i]->MoneyCloseDate;
+                        $records[$i]->MoneyCloseDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'FirstPayDate') {
+                    $records[$i]->FirstPayDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->FirstPayDate2 = $records[$i]->FirstPayDate;
+                        $records[$i]->FirstPayDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'BillSendDate') {
+                    $records[$i]->BillSendDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->BillSendDate2 = $records[$i]->BillSendDate;
+                        $records[$i]->BillSendDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'AllowDenyDesc') {
+                    $records[$i]->AllowDenyDesc2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->AllowDenyDesc2 = $records[$i]->AllowDenyDesc;
+                        $records[$i]->AllowDenyDesc = preg_replace("/\|/", "\r", $value);
+                    }
                 }
             }
         }
@@ -1357,6 +1404,17 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             if(trim($params['CustProjectStatus']) == '婉拒取消')
                 $recordQuery->whereIn('CustProjectStatus', ['婉拒', '取消申辦']);
+            else if(trim($params['CustProjectStatus']) == '核准動產') {
+                $recordQuery->whereIn('CustProjectStatus', ['核准']);
+                $recordQuery->where(function($query) use ($params) {
+                    $query->orWhere('DocumentMemo', '=', '動產設定');
+                    $query->orWhere('Insurance', '<>', '');
+                });
+            }
+            else if(trim($params['CustProjectStatus']) == '預購車預設') {
+                $recordQuery->whereIn('CustProjectStatus', ['核准']);
+                $recordQuery->where('CaseCategoryType', '=', '預購/缺車');
+            }
             else
                 $recordQuery->where('CustProjectStatus', '=', trim($params['CustProjectStatus']));
         }

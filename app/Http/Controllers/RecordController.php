@@ -120,6 +120,7 @@ class RecordController extends Controller
         $user = Session::get('user');
         $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
+        $params['CustProjectStatus'] = '核准動產';
         $result = [
             'result' => true,
             'msg' => 'success',
@@ -151,6 +152,7 @@ class RecordController extends Controller
         $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
         $params['orderBy'] = 'asc';
+        $params['CustProjectStatus'] = '預購車預設';
         $result = [
             'result' => true,
             'msg' => 'success',
