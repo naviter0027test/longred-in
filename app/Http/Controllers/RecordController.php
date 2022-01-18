@@ -33,6 +33,9 @@ class RecordController extends Controller
             'msg' => 'success',
         ];
         try {
+            if(isset($params['CustProjectStatus']) == false || trim($params['CustProjectStatus']) == '') {
+                $params['CustProjectStatus'] = '核准無缺';
+            }
             $recordRepository = new RecordRepository();
             $result['records'] = $recordRepository->caseScheduleList($user, $params, $privileges);
             $result['amount'] = $recordRepository->caseScheduleListAmount($user, $params, $privileges);

@@ -1181,8 +1181,8 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             $recordQuery->where(function($query) use ($params) {
                 if($params['CustProjectStatus'] == '核准無缺') {
-                    $query->orWhere('CustProjectStatus', '=', '核准');
-                    $query->orWhere('DocumentMemo', '<>', '');
+                    $query->where('CustProjectStatus', '=', '核准');
+                    $query->where('DocumentMemo', '<>', '');
                 } else
                     $query->orWhere('CustProjectStatus', 'like', '%'. $params['CustProjectStatus']. '%');
             });
@@ -1200,6 +1200,48 @@ class RecordRepository
             foreach($recordAttr as $key => $value) {
                 if(is_null($value)) {
                     $records[$i]->{$key} = '';
+                }
+                if($key == 'ApplicationReceivedDate') {
+                    $records[$i]->ApplicationReceivedDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->ApplicationReceivedDate2 = $records[$i]->ApplicationReceivedDate;
+                        $records[$i]->ApplicationReceivedDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'LicenseReceivedDate') {
+                    $records[$i]->LicenseReceivedDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->LicenseReceivedDate2 = $records[$i]->LicenseReceivedDate;
+                        $records[$i]->LicenseReceivedDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'RenewalLicenseDate') {
+                    $records[$i]->RenewalLicenseDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->RenewalLicenseDate2 = $records[$i]->RenewalLicenseDate;
+                        $records[$i]->RenewalLicenseDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'MoneyCloseDate') {
+                    $records[$i]->MoneyCloseDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->MoneyCloseDate2 = $records[$i]->MoneyCloseDate;
+                        $records[$i]->MoneyCloseDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'FirstPayDate') {
+                    $records[$i]->FirstPayDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->FirstPayDate2 = $records[$i]->FirstPayDate;
+                        $records[$i]->FirstPayDate = date('Y/m/d', strtotime($value));
+                    }
+                }
+                if($key == 'BillSendDate') {
+                    $records[$i]->BillSendDate2 = '';
+                    if(trim($value) != '') {
+                        $records[$i]->BillSendDate2 = $records[$i]->BillSendDate;
+                        $records[$i]->BillSendDate = date('Y/m/d', strtotime($value));
+                    }
                 }
                 if($key == 'AllowDenyDesc') {
                     $records[$i]->AllowDenyDesc2 = '';
@@ -1225,8 +1267,8 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             $recordQuery->where(function($query) use ($params) {
                 if($params['CustProjectStatus'] == '核准無缺') {
-                    $query->orWhere('CustProjectStatus', '=', '核准');
-                    $query->orWhere('DocumentMemo', '<>', '');
+                    $query->where('CustProjectStatus', '=', '核准');
+                    $query->where('DocumentMemo', '<>', '');
                 } else
                     $query->orWhere('CustProjectStatus', 'like', '%'. $params['CustProjectStatus']. '%');
             });
@@ -1276,7 +1318,7 @@ class RecordRepository
             else if(trim($params['CustProjectStatus']) == '核准動產') {
                 $recordQuery->whereIn('CustProjectStatus', ['核准']);
                 $recordQuery->where(function($query) use ($params) {
-                    $query->orWhere('DocumentMemo', '=', '動產設定');
+                    $query->orWhere('CustProjectCategory', '=', '動產設定');
                     $query->orWhere('Insurance', '<>', '');
                 });
             }
@@ -1407,7 +1449,7 @@ class RecordRepository
             else if(trim($params['CustProjectStatus']) == '核准動產') {
                 $recordQuery->whereIn('CustProjectStatus', ['核准']);
                 $recordQuery->where(function($query) use ($params) {
-                    $query->orWhere('DocumentMemo', '=', '動產設定');
+                    $query->orWhere('CustProjectCategory', '=', '動產設定');
                     $query->orWhere('Insurance', '<>', '');
                 });
             }
