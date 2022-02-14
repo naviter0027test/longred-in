@@ -46,7 +46,6 @@ class ImportCsvFromLocal extends Command
         $admin = Admin::orderBy('id')->first();
         $fileNames = Storage::disk('local')->files('./csv');
         $recordRepository = new RecordRepository();
-        $recordRepository->recordClear();
 
         foreach($fileNames as $fileName) {
             $splitArr = preg_split("/\./", $fileName);
@@ -54,6 +53,9 @@ class ImportCsvFromLocal extends Command
 
             $isAllSuccess = true;
             if($splitArr[$nameLen-1] == 'csv') {
+
+		$recordRepository->recordClear();
+
                 $content = Storage::disk('local')->get($fileName);
                 $resultRow = [];
                 $arr = preg_split("/\n/", $content);
