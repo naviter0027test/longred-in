@@ -125,6 +125,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::post('setting', 'Admin\UserController@passUpdate');
 
     Route::get('companies', 'Admin\CompanyController@index');
+    Route::post('companies', 'Admin\CompanyController@index');
     Route::get('companies/create', 'Admin\CompanyController@createPage');
     Route::post('companies/create', 'Admin\CompanyController@create');
     Route::get('companies/edit/{id}', 'Admin\CompanyController@edit');
@@ -132,6 +133,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::get('companies/remove/{id}', 'Admin\CompanyController@remove');
 
     Route::get( 'account', 'Admin\AccountController@lists');
+    Route::post( 'account', 'Admin\AccountController@lists');
     Route::get( 'account/create', 'Admin\AccountController@createPage');
     Route::post('account/create', 'Admin\AccountController@create');
     Route::get( 'account/edit/{id}', 'Admin\AccountController@edit');
@@ -139,6 +141,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::get( 'account/remove/{id}', 'Admin\AccountController@remove');
 
     Route::get('record', 'Admin\RecordController@index');
+    Route::post('record', 'Admin\RecordController@index');
     Route::post('record/import', 'Admin\RecordController@import');
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
     /*

@@ -16,7 +16,8 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="file" name="importCSV" class="importCSV" />
                 </form>
-                <form method="get" action="/admin/record" class="searchBar">
+                <form method="post" action="/admin/record" enctype="multipart/form-data" class="searchBar">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     案件狀態
                     <select name="CustProjectStatus">
                         <option value=""  >請選擇</option>
