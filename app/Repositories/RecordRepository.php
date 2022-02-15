@@ -169,7 +169,7 @@ class RecordRepository
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
             $recordQuery->where('CustProjectStatus', '=', $params['CustProjectStatus']);
         }
-        if(isset($params['keyword'])) {
+        if(isset($params['keyword']) && trim($params['keyword']) != '') {
             $recordQuery->where(function($query) use ($params) {
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
@@ -1201,6 +1201,27 @@ class RecordRepository
                 if(is_null($value)) {
                     $records[$i]->{$key} = '';
                 }
+                if($key == 'SalesID') {
+                    $records[$i]->SalesID = $value. '';
+		}
+                if($key == 'VehicleLoanFeeIn') {
+                    $records[$i]->VehicleLoanFeeIn = $value. '';
+		}
+                if($key == 'Term') {
+                    $records[$i]->Term = $value. '';
+		}
+                if($key == 'TermAmount') {
+                    $records[$i]->TermAmount = $value. '';
+		}
+                if($key == 'CustLoanCash') {
+                    $records[$i]->CustLoanCash = $value. '';
+		}
+                if($key == 'CustFinalDeposit') {
+                    $records[$i]->CustFinalDeposit = $value. '';
+		}
+                if($key == 'CustFee') {
+                    $records[$i]->CustFee = $value. '';
+		}
                 if($key == 'ApplicationReceivedDate') {
                     $records[$i]->ApplicationReceivedDate2 = '';
                     if(trim($value) != '') {
@@ -1365,6 +1386,27 @@ class RecordRepository
                 if(is_null($value)) {
                     $records[$i]->{$key} = '';
                 }
+                if($key == 'SalesID') {
+                    $records[$i]->SalesID = $value. '';
+		}
+                if($key == 'VehicleLoanFeeIn') {
+                    $records[$i]->VehicleLoanFeeIn = $value. '';
+		}
+                if($key == 'Term') {
+                    $records[$i]->Term = $value. '';
+		}
+                if($key == 'TermAmount') {
+                    $records[$i]->TermAmount = $value. '';
+		}
+                if($key == 'CustLoanCash') {
+                    $records[$i]->CustLoanCash = $value. '';
+		}
+                if($key == 'CustFinalDeposit') {
+                    $records[$i]->CustFinalDeposit = $value. '';
+		}
+                if($key == 'CustFee') {
+                    $records[$i]->CustFee = $value. '';
+		}
                 if($key == 'ApplicationReceivedDate') {
                     $records[$i]->ApplicationReceivedDate2 = '';
                     if(trim($value) != '') {
