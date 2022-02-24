@@ -1370,6 +1370,13 @@ class RecordRepository
             }
         }
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
+	    if($params['CaseCategoryType'] == '一般') {
+                $recordQuery->where('CaseCategoryType', '=', '');
+	    }
+	    else if($params['CaseCategoryType'] == '預購車') {
+                $recordQuery->where('CaseCategoryType', '=', '預購/缺車');
+	    }
+	    else
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
         }
         /*
@@ -1522,6 +1529,13 @@ class RecordRepository
             }
         }
         if(isset($params['CaseCategoryType']) && trim($params['CaseCategoryType']) != '') {
+	    if($params['CaseCategoryType'] == '一般') {
+                $recordQuery->where('CaseCategoryType', '=', '');
+	    }
+	    else if($params['CaseCategoryType'] == '預購車') {
+                $recordQuery->where('CaseCategoryType', '=', '預購/缺車');
+	    }
+	    else
             $recordQuery->where('CaseCategoryType', '=', trim($params['CaseCategoryType']));
         }
         /*

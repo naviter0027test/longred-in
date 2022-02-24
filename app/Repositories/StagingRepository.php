@@ -41,7 +41,16 @@ class StagingRepository
         }
         $stagings = $stagingQuery->get();
         foreach($stagings as $i => $staging) {
+            $stagAttr = $staging->getAttributes();
             $stagings[$i]['img'] = '/uploads'. $stagings[$i]['img'];
+            foreach($stagAttr as $key => $value) {
+                if(is_null($value)) {
+                    $stagings[$i]->{$key} = '';
+                }
+                if($key == 'area') {
+                    $stagings[$i]->area = $value. '';
+		}
+	    }
         }
         return $stagings;
     }
