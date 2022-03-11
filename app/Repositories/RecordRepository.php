@@ -1176,6 +1176,7 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['keyword']. '%');
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
@@ -1283,6 +1284,7 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['keyword']. '%');
             });
         }
         if(isset($params['CustProjectStatus']) && trim($params['CustProjectStatus']) != '') {
@@ -1322,6 +1324,7 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['keyword']. '%');
             });
         }
         if(isset($params['customerKeyword'])) {
@@ -1481,6 +1484,7 @@ class RecordRepository
                 $query->orWhere('CustName', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('AllowDenyDesc', 'like', '%'. $params['keyword']. '%');
                 $query->orWhere('SubIdName', 'like', '%'. $params['keyword']. '%');
+                $query->orWhere('SubIdSourceName', 'like', '%'. $params['keyword']. '%');
             });
         }
         if(isset($params['customerKeyword'])) {
