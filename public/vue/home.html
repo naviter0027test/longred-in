@@ -15,6 +15,9 @@
                 <a href="/front/news" class="glyphicon glyphicon-bell bell"><label>0</label></a>
             </div>
             <p class="sec-bar"> 經銷商分期 </p>
+            <select class="pri-select" multiple >
+                <option v-for="privilege in privileges" :value="privilege.UserId" >{{privilege.UserName}}</option>
+            </select>
             <div class="content">
                 <div class="item">
                     <a class="item-a" href="/front/create">
@@ -80,6 +83,7 @@
         </div>
     </body>
     <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/selectize.js-master/dist/js/standalone/selectize.js"></script>
     <script src="/lib/vue.min.js"></script>
     <script src="/js/vue/home.js"></script>
 </html>
