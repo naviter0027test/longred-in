@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+        <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
+        <link href='/css/front/body.css' rel='stylesheet' />
+    </head>
+    <body class="body">
+        <div id="vueApp">
+            <div class="login-header">
+                業務內部 APP 展示
+            </div>
+            <p class="sec-bar"> 歡迎來到業務展示 </p>
+            <div class="login-form">
+                <input type="hidden" name="appleToken" />
+                <p class="login-input">
+                    <i class="glyphicon glyphicon-user"></i><input type="text" name="account" v-model="account" /> 
+                </p>
+                <p class="login-input">
+                    <i class="glyphicon glyphicon-lock"></i><input type="password" name="password" v-model="password" />
+                </p>
+                <p> <button class="btn login-submit" v-on:click="login()">登入</button> </p>
+            </div>
+        </div>
+    </body>
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/vue.min.js"></script>
+    <script src="/js/vue/login.js"></script>
+</html>
