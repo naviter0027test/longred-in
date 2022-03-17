@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
         <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
-        <link href='/css/front/body.css' rel='stylesheet' />
+        <link href='/lib/selectize.js-master/dist/css/selectize.default.css' rel='stylesheet' />
+        <link href='/css/vue/body.css' rel='stylesheet' />
     </head>
     <body class="body">
         <div id="vueApp">
@@ -15,9 +16,13 @@
                 <a href="/front/news" class="glyphicon glyphicon-bell bell"><label>0</label></a>
             </div>
             <p class="sec-bar"> 經銷商分期 </p>
-            <select class="pri-select" multiple >
-                <option v-for="privilege in privileges" :value="privilege.UserId" >{{privilege.UserName}}</option>
-            </select>
+            <p type="text" class="pri-select" >
+                <select multiple >
+                    <option v-for="privilege in privileges" :value="privilege.UserId" >
+                    {{privilege.UserName}}
+                    </option>
+                </select>
+            </p>
             <div class="content">
                 <div class="item">
                     <a class="item-a" href="/front/create">

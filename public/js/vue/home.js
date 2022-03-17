@@ -1,4 +1,4 @@
-new Vue({
+var v = new Vue({
     el: '#vueApp',
     data: {
         privileges: [],
@@ -26,9 +26,31 @@ new Vue({
                 var json = JSON.parse(data);
                 if(json['status'] == true) {
                     selfthis.privileges = json['privileges'];
+                    setTimeout(function() {
+                        $('.pri-select select').selectize({
+                            'create': false,
+                            'onChange': function(value) {
+                                //console.log(value);
+                                if(value == null)
+                                    selfthis.privilegesSelected = [];
+                                else
+                                    selfthis.privilegesSelected = value;
+                            },
+                            'sortField': {
+                                'field': 'text',
+                                'direction': 'asc'
+                            }
+                        });
+                    }, 1000);
                 }
             }
         });
+    },
+    watch: {
+        privilegesSelected: function() {
+            console.log('watch');
+            console.log(this.privilegesSelected);
+        }
     },
     methods: {
         logout: function() {
