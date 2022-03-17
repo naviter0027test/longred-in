@@ -1,0 +1,247 @@
+.body {
+    background: #eeeeee;
+}
+
+.login-header {
+    padding: 20px;
+    text-align: center;
+
+    color: white;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#bfd255+0,8eb92a+50,72aa00+51,9ecb2d+100;Green+Gloss */
+background: #bfd255; /* Old browsers */
+background: -moz-linear-gradient(top,  #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 ); /* IE6-9 */
+
+}
+
+.sec-bar {
+    padding: 10px;
+    text-align: center;
+
+    color: white;
+    background: #222222;
+}
+
+.login-form {
+    margin-top: 20px;
+    padding: 26px 24px 46px;
+
+    /*
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    */
+}
+
+.login-form .login-input {
+    background: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.login-form i {
+    padding: 11px;
+    width: 5%;
+
+    text-align: center;
+}
+
+.login-form input {
+    width: 92%;
+    padding: 8px;
+
+    border: 0px solid transparent;
+}
+
+.login-form .login-submit {
+    width: 100%;
+
+    color: white;
+    background: #8eb92a;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+}
+
+.login-form .login-submit:hover {
+    background: #72aa00;
+    transition: background 1s;
+}
+
+.login-form .login-forget {
+    text-align: center;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+
+    color: white;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#bfd255+0,8eb92a+50,72aa00+51,9ecb2d+100;Green+Gloss */
+background: #bfd255; /* Old browsers */
+background: -moz-linear-gradient(top,  #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 ); /* IE6-9 */
+
+}
+
+.pri-select {
+    padding: 10px;
+    text-align: center;
+}
+
+.content {
+    text-align: center;
+}
+
+.content .item {
+    display: inline-block;
+    margin: 20px 0 30px 0;
+    width: 30%;
+
+    text-align: center;
+}
+
+.content .item .img {
+    padding: 20px;
+
+    background: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.content .item .desc {
+    margin-top: 5px;
+}
+
+.content .item-a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.content .item-a:hover {
+    color: black;
+    transition: color 1s;
+}
+
+.create-content {
+    padding: 10px;
+}
+
+.create-content h4 {
+    margin: 20px 10px 10px 0px;
+}
+
+.create-content input {
+    padding: 5px;
+    width: 100%;
+
+    border: 0px solid transparent;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+}
+
+.search-panel form {
+    position: relative;
+    padding: 26px 24px 46px;
+
+    background: #336699;
+    top: -10px;
+}
+
+.search-panel form h4 {
+    padding: 5px;
+    color: white;
+}
+
+.search-panel form input {
+    width: 100%;
+    padding: 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+.search-panel h3.tag {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 20px;
+    width: 50%;
+    top: -10px;
+
+    text-align: center;
+    border-bottom: 10px solid #aaaaaa;
+    color: #666666;
+    cursor: pointer;
+}
+
+.search-panel h3.tag-hover {
+    color: #00b3b3;
+    border-bottom: 10px solid #00b3b3;
+}
+
+.search-panel table {
+    position: relative;
+    top: -10px;
+    width: 100%;
+
+    text-align: center;
+}
+
+.search-panel thead {
+    background: #cccccc;
+}
+
+.search-panel thead td {
+    padding: 10px;
+}
+
+.search-panel tbody td {
+    padding: 10px 0 10px 0;
+}
+
+.search-panel form select {
+    width: 100%;
+    padding: 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.logout {
+    text-align: center;
+}
+
+.logout a {
+    text-decoration: none;
+}
+
+.footer {
+    color: #aaaaaa;
+    text-align: center;
+}
+
+.bell {
+    float: right;
+    color: red;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.bell:hover {
+    color: red;
+}
+
+.bell label {
+    color: white;
+}
