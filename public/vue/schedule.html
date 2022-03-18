@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+        <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
+        <link href='/css/vue/body.css' rel='stylesheet' />
+    </head>
+    <body class="body">
+        <div id="vueApp">
+            <div class="header">
+                    業務內部 APP 展示
+                <a href="/front/news" class="glyphicon glyphicon-bell bell"><label>0</label></a>
+            </div>
+            <p class="sec-bar"> 案件歸檔進度 </p>
+            <div class="content">
+            </div>
+            <div class="logout">
+                <a href="#" v-on:click="logout()" >登出帳號</a>
+            </div>
+            <div class="footer">
+                若有任何問題，請洽客服00-00000000
+            </div>
+        </div>
+    </body>
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/vue.min.js"></script>
+    <script src="/js/vue/schedule.js"></script>
+</html>
