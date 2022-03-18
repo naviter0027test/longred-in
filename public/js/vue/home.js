@@ -25,6 +25,19 @@ var v = new Vue({
         privilegesSelected: function() {
             console.log('watch');
             console.log(this.privilegesSelected);
+            var postData = {};
+            postData['privileges'] = this.privilegesSelected;
+            $.ajax({
+                'type': "POST",
+                'url': "/user/privileges/setsee",
+                'data': postData,
+                'success': function(data) {
+                    console.log(data);
+                    var json = JSON.parse(data);
+                    if(json['status'] == true) {
+                    }
+                }
+            });
         }
     },
     methods: {
