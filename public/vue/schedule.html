@@ -7,15 +7,37 @@
         <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
         <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
         <link href='/css/vue/body.css' rel='stylesheet' />
+        <link href='/css/vue/search.css' rel='stylesheet' />
     </head>
     <body class="body">
         <div id="vueApp">
             <div class="header">
+                <a href="/vue/home.html" class="glyphicon glyphicon-chevron-left chevron"></a>
                     業務內部 APP 展示
-                <a href="/front/news" class="glyphicon glyphicon-bell bell"><label>0</label></a>
             </div>
             <p class="sec-bar"> 案件歸檔進度 </p>
+            <div class="search-panel">
+                <input type="text" class="keyword-input" placeholder="請輸入申請人、姓名或關鍵字" v-model="keyword" /><button class="glyphicon glyphicon-search search-btn" v-on:click="search" />
+            </div>
             <div class="content">
+                <table class="search-result">
+                    <thead>
+                        <tr>
+                            <td>準駁日期</td>
+                            <td>承辦/來源</td>
+                            <td>申請人/商品</td>
+                            <td>案件狀態</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2020-01-02</td>
+                            <td>A123456789</td>
+                            <td>AAA</td>
+                            <td>待核准</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="logout">
                 <a href="#" v-on:click="logout()" >登出帳號</a>
