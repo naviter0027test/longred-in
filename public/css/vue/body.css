@@ -7,12 +7,8 @@
     text-align: center;
 
     color: white;
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#bfd255+0,8eb92a+50,72aa00+51,9ecb2d+100;Green+Gloss */
-background: #bfd255; /* Old browsers */
-background: -moz-linear-gradient(top,  #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 ); /* IE6-9 */
+    background-image: url(../../imgs/banner-1.jpg);
+    background-size: 100%;
 
 }
 
@@ -59,14 +55,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', end
     width: 100%;
 
     color: white;
-    background: #8eb92a;
+    background: #1a8cff;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
 }
 
 .login-form .login-submit:hover {
-    background: #72aa00;
+    background: #0080ff;
     transition: background 1s;
 }
 
@@ -79,12 +75,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', end
     text-align: center;
 
     color: white;
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#bfd255+0,8eb92a+50,72aa00+51,9ecb2d+100;Green+Gloss */
-background: #bfd255; /* Old browsers */
-background: -moz-linear-gradient(top,  #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom,  #bfd255 0%,#8eb92a 50%,#72aa00 51%,#9ecb2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 ); /* IE6-9 */
+    background-image: url(../../imgs/banner-1.jpg);
+    background-size: 100%;
 
 }
 
