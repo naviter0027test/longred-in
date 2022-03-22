@@ -9,31 +9,47 @@ var v = new Vue({
     },
     created: function() {
         console.log('created');
-        var selfthis = this;
-        var postData = {};
-        postData['keyword'] = this.keyword;
-        postData['CustProjectStatus'] = this.CustProjectStatus;
-        postData['nowPage'] = this.nowPage;
-        postData['offset'] = this.offset;
         $.ajax({
-            'type': "POST",
-            'url': "/user/case/schedule",
-            'data': postData,
+            'type': "GET",
+            'url': "/user/isLogin",
             'success': function(data) {
+                console.log(data);
                 var json = JSON.parse(data);
-                if(json['result'] == true) {
-                    selfthis.records = json.records;
-                    console.log(json);
+                if(json['status'] == false) {
+                    alert("尚未登入");
+                    location.href = "/vue/login.html";
                 }
             }
         });
+        this.search();
     },
     methods: {
         search: function() {
-            console.log('search');
+            console.log('search:'+ this.keyword);
+            var selfthis = this;
+            var postData = {};
+            postData['keyword'] = this.keyword;
+            postData['CustProjectStatus'] = this.CustProjectStatus;
+            postData['nowPage'] = this.nowPage;
+            postData['offset'] = this.offset;
+            $.ajax({
+                'type': "POST",
+                'url': "/user/case/schedule",
+                'data': postData,
+                'success': function(data) {
+                    var json = JSON.parse(data);
+                    if(json['result'] == true) {
+                        selfthis.records = json.records;
+                        console.log(json);
+                    }
+                }
+            });
         },
         see: function(index) {
-            console.log('see'+ index);
+            console.log('see:'+ index);
+            console.log(this.records[index]);
+            window.sessionStorage.setItem('record', JSON.stringify(this.records[index]));
+            location.href = "/vue/schedule-see.html";
         },
         logout: function() {
             if(confirm('確定登出?')) {
