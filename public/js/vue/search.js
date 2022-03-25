@@ -97,7 +97,7 @@ var v = new Vue({
             console.log('see:'+ index);
             console.log(this.records[index]);
             window.sessionStorage.setItem('search-record', JSON.stringify(this.records[index]));
-            //location.href = "/vue/search-see.html";
+            location.href = "/vue/search-see.html";
         },
         getUrlParameter: function(sParam) {
             var sPageURL = window.location.search.substring(1),
