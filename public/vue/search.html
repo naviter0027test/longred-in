@@ -21,7 +21,7 @@
             </div>
             <div class="content">
                 <div class="search-status margin-top20px">
-                    <a href="#" class="clicked">全部</a><a href="#">處理中</a><a href="#">核准待</a><a href="#">核准</a><a href="#">婉拒/取消</a>
+                    <a href="#" v-bind:class="{'clicked': status1}" v-on:click="statusChoice(false)">全部</a><a href="#" v-bind:class="{'clicked': status2}" v-on:click="statusChoice('處理中')">處理中</a><a href="#" v-bind:class="{'clicked': status3}" v-on:click="statusChoice('待核准')">待核准</a><a href="#" v-bind:class="{'clicked': status4}" v-on:click="statusChoice('核准')">核准</a><a href="#" v-bind:class="{'clicked': status5}" v-on:click="statusChoice('婉拒取消')">婉拒/取消</a>
                 </div>
                 <table class="search-result">
                     <thead>
