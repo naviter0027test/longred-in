@@ -37,9 +37,34 @@
     border-bottom-right-radius: 25px;
 }
 
+.margin-top20px {
+    margin-top: 20px;
+}
+
+.search-status {
+    background: white;
+}
+
+.search-status a {
+    display: inline-block;
+    width: 20%;
+    padding: 10px 0px 10px 0px;
+
+    color: black;
+    border-bottom: 5px solid #999999;
+    text-decoration: none;
+}
+
+.search-status a:hover {
+    border-bottom: 5px solid #1a8cff;
+}
+
+.search-status a.clicked {
+    border-bottom: 5px solid #1a8cff;
+}
+
 .content .search-result {
     width: 100%;
-    margin-top: 20px;
 }
 
 .content .search-result thead {
@@ -50,11 +75,11 @@
     padding: 8px;
 }
 
-.search-result tr {
+.content .search-result tr {
     cursor: pointer;
 }
 
-.search-result tbody tr:hover {
+.content .search-result tbody tr:hover {
     background: #ffffff;
 }
 

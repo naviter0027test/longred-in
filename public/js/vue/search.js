@@ -29,7 +29,7 @@ var v = new Vue({
             var selfthis = this;
             var postData = {};
             postData['keyword'] = this.keyword;
-            //postData['CustProjectStatus'] = this.CustProjectStatus;
+            postData['CustProjectStatus'] = this.CustProjectStatus;
             postData['nowPage'] = this.nowPage;
             postData['offset'] = this.offset;
             $.ajax({

@@ -15,11 +15,14 @@
                 <a href="/vue/home.html" class="glyphicon glyphicon-chevron-left chevron"></a>
                     業務內部 APP 展示
             </div>
-            <p class="sec-bar"> 案件歸檔進度 </p>
+            <p class="sec-bar"> 案件查詢 </p>
             <div class="search-panel">
                 <input type="text" class="keyword-input" placeholder="請輸入申請人、姓名或關鍵字" v-model="keyword" /><button class="glyphicon glyphicon-search search-btn" v-on:click="search" />
             </div>
             <div class="content">
+                <div class="search-status margin-top20px">
+                    <a href="#" class="clicked">全部</a><a href="#">處理中</a><a href="#">核准待</a><a href="#">核准</a><a href="#">婉拒/取消</a>
+                </div>
                 <table class="search-result">
                     <thead>
                         <tr>
@@ -34,7 +37,7 @@
                             <td>{{record.CustAllowDenyTime}}</td>
                             <td>{{record.SubIdName}} / {{record.SubIdSourceName}}</td>
                             <td>{{record.CustName}} / {{record.CarModelName}}</td>
-                            <td>{{record.CustProjectStatus}}</td>
+                            <td>{{record.DocumentMemo}}</td>
                         </tr>
                     </tbody>
                 </table>
