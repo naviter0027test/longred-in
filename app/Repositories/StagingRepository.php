@@ -11,8 +11,11 @@ use Storage;
 class StagingRepository
 {
     public function create($params, $files = []) {
+        $tit = '';
+        if(isset($params['title']) && trim($params['title']) != '')
+            $tit = $params['title'];
         $staging = new Staging();
-        $staging->title = '';
+        $staging->title = $tit;
         $staging->img = '';
         $staging->area = isset($params['area']) ? $params['area'] : 1;
         $staging->save();
@@ -24,7 +27,7 @@ class StagingRepository
             $extLength = strlen($ext) + 1;
             $originName = substr($originName, 0, -$extLength);
             $filename = $staging->id. "_img.$ext";
-            $staging->title = $originName;
+            //$staging->title = $originName;
             $staging->img = $path. $filename;
             $staging->save();
             $files['img']->move($root. $path, $filename);
