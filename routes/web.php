@@ -89,6 +89,7 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::post('staging', 'StagingController@index');
         Route::get('staging/upload', 'StagingController@uploadPage');
         Route::post('staging/upload', 'StagingController@upload');
+        Route::get('staging/remove/{id}', 'StagingController@remove');
 
         Route::get('messages', 'MessageController@listsPage');
         Route::get('message', 'MessageController@listsByUserId');

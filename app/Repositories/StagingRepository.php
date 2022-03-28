@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\File;
 use App\Staging;
 use App\Account;
 use Exception;
@@ -61,5 +62,19 @@ class StagingRepository
             $stagingQuery->where('area', '=', $params['area']);
         }
         return $stagingQuery->count();
+    }
+
+    public function del($id) {
+        $root = config('filesystems')['disks']['uploads']['root'];
+
+        $staging = Staging::where('id', '=', $id)->first();
+        if(isset($staging->id) == false) {
+            throw new Exception('指定分期表不存在');
+        }
+        //echo $root. $staging->img;
+        if(File::exists($root. $staging->img)) {
+            unlink($root. $staging->img);
+        }
+        $staging->delete();
     }
 }
