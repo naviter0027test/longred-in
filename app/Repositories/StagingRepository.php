@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\File;
 use App\Staging;
 use App\Account;
 use Exception;
@@ -10,8 +11,11 @@ use Storage;
 class StagingRepository
 {
     public function create($params, $files = []) {
+        $tit = '';
+        if(isset($params['title']) && trim($params['title']) != '')
+            $tit = $params['title'];
         $staging = new Staging();
-        $staging->title = '';
+        $staging->title = $tit;
         $staging->img = '';
         $staging->area = isset($params['area']) ? $params['area'] : 1;
         $staging->save();
@@ -23,7 +27,7 @@ class StagingRepository
             $extLength = strlen($ext) + 1;
             $originName = substr($originName, 0, -$extLength);
             $filename = $staging->id. "_img.$ext";
-            $staging->title = $originName;
+            //$staging->title = $originName;
             $staging->img = $path. $filename;
             $staging->save();
             $files['img']->move($root. $path, $filename);
@@ -41,7 +45,16 @@ class StagingRepository
         }
         $stagings = $stagingQuery->get();
         foreach($stagings as $i => $staging) {
+            $stagAttr = $staging->getAttributes();
             $stagings[$i]['img'] = '/uploads'. $stagings[$i]['img'];
+            foreach($stagAttr as $key => $value) {
+                if(is_null($value)) {
+                    $stagings[$i]->{$key} = '';
+                }
+                if($key == 'area') {
+                    $stagings[$i]->area = $value. '';
+		}
+	    }
         }
         return $stagings;
     }
@@ -52,5 +65,19 @@ class StagingRepository
             $stagingQuery->where('area', '=', $params['area']);
         }
         return $stagingQuery->count();
+    }
+
+    public function del($id) {
+        $root = config('filesystems')['disks']['uploads']['root'];
+
+        $staging = Staging::where('id', '=', $id)->first();
+        if(isset($staging->id) == false) {
+            throw new Exception('指定分期表不存在');
+        }
+        //echo $root. $staging->img;
+        if(File::exists($root. $staging->img)) {
+            unlink($root. $staging->img);
+        }
+        $staging->delete();
     }
 }

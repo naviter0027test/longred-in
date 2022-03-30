@@ -155,4 +155,8 @@ class MessageController extends Controller
 
         return json_encode($result);
     }
+
+    public function listsByUserId(Request $request) {
+	\Log::info('/user/message');
+    }
 }

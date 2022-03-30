@@ -12,7 +12,8 @@
         <div class="content">
             <h3>使用者管理</h3>
             <div class="nav">
-                <form method="get" action="/admin/account/" class="searchBar">
+                <form method="post" action="/admin/account/" enctype="multipart/form-data" class="searchBar">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <input type="text" name="keyword" placeholder="關鍵字查詢" value="{{ isset($params['keyword']) ? $params['keyword'] : '' }}" />
                     <button class="btn">查詢</button>
                 </form>

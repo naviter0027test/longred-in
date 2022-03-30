@@ -22,6 +22,10 @@
                         <option value="6">其他</option>
                     </select>
                 </p>
+                <h5>標題</h5>
+                <p>
+                    <input type="text" name="title" value="" />
+                </p>
                 <h5>選擇圖檔</h5>
                 <p>
                     <input type="file" name="img" value="" />

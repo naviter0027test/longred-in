@@ -64,4 +64,19 @@ class StagingController extends Controller
         }
         return json_encode($result);
     }
+
+    public function remove(Request $request, $id) {
+        $result = [
+            'result' => true,
+            'msg' => 'success',
+        ];
+        try {
+            $stagingRepository = new StagingRepository();
+            $stagingRepository->del($id);
+        } catch (Exception $e) {
+            $result['result'] = false;
+            $result['msg'] = $e->getMessage();
+        }
+        return json_encode($result);
+    }
 }

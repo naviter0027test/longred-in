@@ -6,24 +6,24 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
 use App\Admin;
-use App\Repositories\RecordRepository;
+use App\Repositories\CompanyRepository;
 use Exception;
 
-class ImportCsvFromLocal extends Command
+class ImportCsvFromCompany extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ImportCsvFromLocal';
+    protected $signature = 'ImportCsvFromCompany';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'csv檔會送到本地端，定時從該檔進行匯入';
+    protected $description = '公司csv匯入';
 
     /**
      * Create a new command instance.
@@ -44,8 +44,8 @@ class ImportCsvFromLocal extends Command
     {
 
         $admin = Admin::orderBy('id')->first();
-        $fileNames = Storage::disk('local')->files('./csv');
-        $recordRepository = new RecordRepository();
+        $fileNames = Storage::disk('local')->files('./company');
+        $companyRepository = new CompanyRepository();
 
         foreach($fileNames as $fileName) {
             $splitArr = preg_split("/\./", $fileName);
@@ -54,8 +54,6 @@ class ImportCsvFromLocal extends Command
             $isAllSuccess = true;
             if($splitArr[$nameLen-1] == 'csv') {
 
-		$recordRepository->recordClear();
-
                 $content = Storage::disk('local')->get($fileName);
                 $resultRow = [];
                 $arr = preg_split("/\n/", $content);
@@ -63,7 +61,7 @@ class ImportCsvFromLocal extends Command
                 foreach($arr as $i => $row) {
                     try {
                         $csv = str_getcsv($row, ",");
-                        $recordRepository->importRow($csv, $admin);
+                        $companyRepository->importRow($csv, $admin);
                         $resultRow[$i] = [
                             'status' => true,
                             'msg' => 'success',
@@ -87,7 +85,7 @@ class ImportCsvFromLocal extends Command
                     //\Log::info($resultRow);
                 } else {
                     //刪除已匯入的檔案
-                    Storage::disk('local')->delete($fileName);
+                    //Storage::disk('local')->delete($fileName);
                 }
             }
         }
