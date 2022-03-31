@@ -154,7 +154,7 @@ class RecordController extends Controller
         $user = Session::get('user');
         $privileges = Session::get('seePrivileges');
         $params['userId'] = $user->id;
-        $params['orderBy'] = 'asc';
+        $params['orderBy'] = isset($params['orderBy']) ? $params['orderBy'] : 'asc';
         $params['CustProjectStatus'] = '預購車預設';
         $result = [
             'result' => true,
