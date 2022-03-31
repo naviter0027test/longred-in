@@ -63,6 +63,24 @@
     border-bottom: 5px solid #1a8cff;
 }
 
+.search-status2 a {
+    display: inline-block;
+    width: 25%;
+    padding: 10px 0px 10px 0px;
+
+    color: black;
+    border-bottom: 5px solid #999999;
+    text-decoration: none;
+}
+
+.search-status2 a:hover {
+    border-bottom: 5px solid #1a8cff;
+}
+
+.search-status2 a.clicked {
+    border-bottom: 5px solid #1a8cff;
+}
+
 .content .search-result {
     width: 100%;
 }
