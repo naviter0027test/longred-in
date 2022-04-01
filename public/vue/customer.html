@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+        <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
+        <link href='/css/vue/body.css' rel='stylesheet' />
+        <link href='/css/vue/search.css' rel='stylesheet' />
+    </head>
+    <body class="body">
+        <div id="vueApp">
+            <div class="header">
+                <a href="/vue/home.html" class="glyphicon glyphicon-chevron-left chevron"></a>
+                    業務內部 APP 展示
+            </div>
+            <p class="sec-bar"> 客戶繳款資訊查詢</p>
+            <div class="search-panel">
+                <input type="text" class="keyword-input" placeholder="請輸入申請人、姓名或關鍵字" v-model="keyword" /><button class="glyphicon glyphicon-search search-btn" v-on:click="search" />
+            </div>
+            <div class="content">
+                <table class="search-result margin-top20px">
+                    <thead>
+                        <tr>
+                            <td>準駁日期</td>
+                            <td>承辦/來源</td>
+                            <td>申請人/郵寄日</td>
+                            <td>首期繳款日</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(record, index) in records" v-on:click="see(index)">
+                            <td>{{record.CustAllowDenyTime}}</td>
+                            <td>{{record.SubIdName}} / {{record.SubIdSourceName}}</td>
+                            <td>{{record.CustName}} / {{record.BillSendDate}}</td>
+                            <td>{{record.FirstPayDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="logout">
+                <a href="#" v-on:click="logout()" >登出帳號</a>
+            </div>
+            <div class="footer">
+                若有任何問題，請洽客服00-00000000
+            </div>
+        </div>
+    </body>
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/vue.min.js"></script>
+    <script src="/js/vue/customer.js"></script>
+</html>
