@@ -6,7 +6,6 @@ var v = new Vue({
         'title': '',
         'img': null,
         'area': 1,
-        'searchArea': 1,
         'status1': true,
         'status2': false,
         'status3': false,
@@ -62,7 +61,7 @@ var v = new Vue({
                 this.status3 = false;
                 this.status4 = true;
             }
-            this.searchArea = area;
+            this.area = area;
             this.search();
         },
         search: function() {
@@ -70,7 +69,7 @@ var v = new Vue({
             console.log('search status:'+ this.area);
             var selfthis = this;
             var postData = {};
-            postData['area'] = this.searchArea;
+            postData['area'] = this.area;
             postData['nowPage'] = this.nowPage;
             postData['offset'] = this.offset;
             $.ajax({
@@ -108,7 +107,33 @@ var v = new Vue({
             return false;
         },
         upload: function() {
-            console.log(this.img);
+            var selfthis = this;
+            var formData = new FormData();
+            formData.append('img', $('[name=img]')[0].files[0]);
+            formData.append('title', this.title);
+            formData.append('area', this.area);
+            console.log(formData);
+            $.ajax({
+                'type': "POST",
+                'url': "/user/staging/upload",
+                'data': formData,
+                'processData': false,
+                'contentType': false,
+                'success': function(data) {
+                    console.log('success');
+                    console.log(data);
+                    var resJson = JSON.parse(data);
+                    console.log(resJson);
+                    if(resJson['result'] == true) {
+                        alert('上傳成功');
+                        selfthis.search();
+                    }
+                },
+                'error': function(data) {
+                    console.log('error');
+                    console.log(data);
+                },
+            });
         },
         logout: function() {
             if(confirm('確定登出?')) {
