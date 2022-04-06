@@ -11,6 +11,14 @@ use Storage;
 class StagingRepository
 {
     public function create($params, $files = []) {
+        if(isset($files['img'])) {
+            $ext = $files['img']->getClientOriginalExtension();
+            $extTmp = strtolower($ext);
+            $imgArr = ['jpg', 'jepg', 'png', 'bmp', 'gif', 'tiff'];
+            if(in_array($extTmp, $imgArr) == false)
+                throw new Exception('圖片格式限定:jpg, jepg, png, bmp, gif, tiff');
+        }
+
         $tit = '';
         if(isset($params['title']) && trim($params['title']) != '')
             $tit = $params['title'];
@@ -75,7 +83,7 @@ class StagingRepository
             throw new Exception('指定分期表不存在');
         }
         //echo $root. $staging->img;
-        if(File::exists($root. $staging->img)) {
+        if(File::exists($root. $staging->img) && trim($staging->img) != '') {
             unlink($root. $staging->img);
         }
         $staging->delete();
