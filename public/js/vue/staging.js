@@ -128,6 +128,8 @@ var v = new Vue({
                         alert('上傳成功');
                         selfthis.search();
                     }
+                    else
+                        alert(resJson['msg']);
                 },
                 'error': function(data) {
                     console.log('error');
