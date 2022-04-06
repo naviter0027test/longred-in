@@ -14,7 +14,7 @@ class StagingRepository
         if(isset($files['img'])) {
             $ext = $files['img']->getClientOriginalExtension();
             $extTmp = strtolower($ext);
-            $imgArr = ['jpg', 'jepg', 'png', 'bmp', 'gif', 'tiff'];
+            $imgArr = ['jpg', 'jpeg', 'png', 'bmp', 'gif', 'tiff'];
             if(in_array($extTmp, $imgArr) == false)
                 throw new Exception('圖片格式限定:jpg, jepg, png, bmp, gif, tiff');
         }
