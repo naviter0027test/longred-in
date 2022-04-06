@@ -103,3 +103,29 @@
 .staging-img {
     width: 100%;
 }
+
+.staging-title, .staging-upload {
+    display: inline-block;
+    width: 47%;
+    padding: 5px;
+}
+
+.upload-btn, .remove-btn {
+    display: block;
+    margin-top: 10px;
+    margin-left: 30%;
+    padding: 8px 10px 8px 10px;
+    width: 40%;
+
+    color: white;
+    background: #1a8cff;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+.upload-btn:hover, .remove-btn:hover {
+    background: #0080ff;
+    transition: background 0.5s;
+}

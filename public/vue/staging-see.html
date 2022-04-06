@@ -17,7 +17,7 @@
             </div>
             <p class="sec-bar"> 分期表-明細 </p>
             <div class="create-content">
-                <button v-on:click="remove()">刪除</button>
+                <button class="remove-btn" v-on:click="remove()">刪除</button>
                 <form action="/application/update" method="post" enctype="multipart/form-data" class="login-form create-form">
                     <img :src="this.record.img" class="staging-img" />
                 </form>

@@ -17,9 +17,9 @@
             </div>
             <p class="sec-bar"> 分期表 </p>
             <div class="search-panel">
-                <input type="text" class="" placeholder="標題" v-model="title" />
-                <input type="file" name="img" placeholder="上傳圖檔" v-model="img" />
-                <button class="" v-on:click="upload" >上傳</button>
+                <input type="text" class="staging-title" placeholder="標題" v-model="title" />
+                <input type="file" name="img" class="staging-upload" placeholder="上傳圖檔" v-model="img" style="display: inline-block"/>
+                <button class="upload-btn" v-on:click="upload" >上傳</button>
             </div>
             <div class="content">
                 <div class="search-status2 margin-top20px">
