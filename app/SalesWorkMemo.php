@@ -10,6 +10,8 @@ class SalesWorkMemo extends Model
     protected $primaryKey = 'WorkMemoID';
     protected $dateFormat = 'U';
 
+    public $timestamps = false;
+
     public function getDateFormat() {
         return 'Y-m-d H:i:s';
     }

@@ -17,11 +17,18 @@ class SalesWorkDiaryController extends Controller
     }
 
     public function create(Request $request) {
+        $params = $request->all();
         $result = [
             'result' => true,
             'msg' => 'success',
         ];
+        $user = Session::get('user');
+        $privileges = Session::get('seePrivileges');
         try {
+            $params['SalesName'] = $user->UserName;
+            $salesWorkDiaryController = new SalesWorkDiaryRepository();
+            $salesWorkDiaryController->create($params);
+            //$result['params'] = $params;
         }
         catch(Exception $e) {
             $result['result'] = false;
