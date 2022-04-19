@@ -86,6 +86,8 @@ Route::group(['middleware' => ['check.account']], function() {
         Route::post('companies', 'CompanyController@index');
         Route::get('sales/diary/create', 'SalesWorkDiaryController@createPage');
         Route::post('sales/diary/create', 'SalesWorkDiaryController@create');
+        Route::get('sales/diary', 'SalesWorkDiaryController@indexPage');
+        Route::post('sales/diary', 'SalesWorkDiaryController@index');
 
         Route::get('staging', 'StagingController@indexPage');
         Route::post('staging', 'StagingController@index');

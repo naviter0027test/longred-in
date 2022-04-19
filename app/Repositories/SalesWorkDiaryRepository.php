@@ -9,6 +9,36 @@ use Config;
 
 class SalesWorkDiaryRepository
 {
+    public function lists($user, $params) {
+        $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
+        $offset = isset($params['offset']) ? $params['offset'] : 10;
+        $workMemo = SalesWorkMemo::where(function ($query) use ($params) {
+            $keyword = isset($params['keyword']) ? trim($params['keyword']) : '';
+            $query->orWhere('SubName', 'like', "%$keyword%")
+                ->orWhere('SalesName', 'like', "%$keyword%")
+                ->orWhere('WorkMemo', 'like', "%$keyword%");
+            })
+            ->orderBy('CreateDate', 'desc')
+            ->skip(($nowPage-1) * $offset)
+            ->take($offset)
+            ->get();
+        if(isset($workMemo[0])) {
+            return $workMemo;
+        }
+        return [];
+    }
+
+    public function listsAmount($user, $params) {
+        $amount = SalesWorkMemo::where(function ($query) use ($params) {
+            $keyword = isset($params['keyword']) ? trim($params['keyword']) : '';
+            $query->orWhere('SubName', 'like', "%$keyword%")
+                ->orWhere('SalesName', 'like', "%$keyword%")
+                ->orWhere('WorkMemo', 'like', "%$keyword%");
+            })
+            ->count();
+        return $amount;
+    }
+
     public function create($params) {
         if(isset($params['SubId']) == false || trim($params['SubId']) == '')
             throw new Exception('SubId required');
