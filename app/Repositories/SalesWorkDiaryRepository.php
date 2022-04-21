@@ -9,7 +9,7 @@ use Config;
 
 class SalesWorkDiaryRepository
 {
-    public function lists($user, $params) {
+    public function lists($params, $user = array()) {
         $nowPage = isset($params['nowPage']) ? $params['nowPage'] : 1;
         $offset = isset($params['offset']) ? $params['offset'] : 10;
         $workMemo = SalesWorkMemo::where(function ($query) use ($params) {
@@ -28,7 +28,7 @@ class SalesWorkDiaryRepository
         return [];
     }
 
-    public function listsAmount($user, $params) {
+    public function listsAmount($params, $user = array()) {
         $amount = SalesWorkMemo::where(function ($query) use ($params) {
             $keyword = isset($params['keyword']) ? trim($params['keyword']) : '';
             $query->orWhere('SubName', 'like', "%$keyword%")

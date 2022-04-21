@@ -27,9 +27,9 @@ class SalesWorkDiaryController extends Controller
         $user = Session::get('user');
         $privileges = Session::get('seePrivileges');
         try {
-            $salesWorkDiaryController = new SalesWorkDiaryRepository();
-            $result['memos'] = $salesWorkDiaryController->lists($user, $params);
-            $result['amount'] = $companyRepository->listsAmount($user, $params);
+            $salesWorkDiaryRepository = new SalesWorkDiaryRepository();
+            $result['memos'] = $salesWorkDiaryRepository->lists($params, $user);
+            $result['amount'] = $salesWorkDiaryRepository->listsAmount($params, $user);
             $result['nowPage'] = $nowPage;
             $result['offset'] = $offset;
         }

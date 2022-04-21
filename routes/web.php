@@ -149,29 +149,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::post('record', 'Admin\RecordController@index');
     Route::post('record/import', 'Admin\RecordController@import');
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
-    /*
-    Route::post('record/edit/{id}', 'Admin\RecordController@update');
-    Route::get('record/edit/download/{id}', 'Admin\RecordController@downloadAllImages');
-    Route::get('record/remove/{id}', 'Admin\RecordController@remove');
-    Route::get('grant', 'Admin\RecordController@grant');
 
-    Route::get('message/record/{id}', 'Admin\MessageController@getByRecordId');
-    Route::post('message/send', 'Admin\MessageController@send');
-
-    Route::get('news', 'Admin\MessageController@getNews');
-    Route::get('news/create', 'Admin\MessageController@createNewPage');
-    Route::post('news/create', 'Admin\MessageController@createNew');
-    Route::get('news/edit/{id}', 'Admin\MessageController@editNewPage');
-    Route::post('news/edit/{id}', 'Admin\MessageController@editNew');
-    Route::get( 'news/remove/{id}', 'Admin\MessageController@removeNew');
-
-    Route::get('announcement', 'Admin\MessageController@getAnnouncement');
-    Route::get('announcement/create', 'Admin\MessageController@createAnnouncementPage');
-    Route::post('announcement/create', 'Admin\MessageController@createAnnouncement');
-    Route::get('announcement/edit/{id}', 'Admin\MessageController@editAnnouncementPage');
-    Route::post('announcement/edit/{id}', 'Admin\MessageController@editAnnouncement');
-    Route::get( 'announcement/remove/{id}', 'Admin\MessageController@removeAnnouncement');
-     */
+    Route::get('sales/diary', 'Admin\SalesWorkDiaryController@index');
 
     Route::get('logout', 'Admin\UserController@logout');
 });

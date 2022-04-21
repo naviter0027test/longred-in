@@ -26,6 +26,10 @@
         <a href="/admin/companies" class="{{ strpos(\Request::path(), 'admin/companies') === false ? '' : 'clicked' }} glyphicon glyphicon-user">
         廠商管理</a>
     </div>
+    <div class="menu1">
+        <a href="/admin/sales/diary" class="{{ strpos(\Request::path(), 'admin/sales/diary') === false ? '' : 'clicked' }} glyphicon glyphicon-user">
+        工作日誌管理</a>
+    </div>
 <!--
     <div class="menu1">
         <a href="/admin/grant" class="{{ strpos(\Request::path(), 'admin/grant') === false ? '' : 'clicked' }} glyphicon glyphicon-eur">
