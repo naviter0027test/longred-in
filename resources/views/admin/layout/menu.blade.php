@@ -30,18 +30,4 @@
         <a href="/admin/sales/diary" class="{{ strpos(\Request::path(), 'admin/sales/diary') === false ? '' : 'clicked' }} glyphicon glyphicon-user">
         工作日誌管理</a>
     </div>
-<!--
-    <div class="menu1">
-        <a href="/admin/grant" class="{{ strpos(\Request::path(), 'admin/grant') === false ? '' : 'clicked' }} glyphicon glyphicon-eur">
-        撥款查詢</a>
-    </div>
-    <div class="menu1">
-        <a href="/admin/news" class="{{ strpos(\Request::path(), 'admin/news') === false ? '' : 'clicked' }} glyphicon glyphicon-envelope">
-        消息管理</a>
-    </div>
-    <div class="menu1">
-        <a href="/admin/announcement" class="{{ strpos(\Request::path(), 'admin/announcement') === false ? '' : 'clicked' }} glyphicon glyphicon-bookmark">
-        公告管理</a>
-    </div>
--->
 </div>

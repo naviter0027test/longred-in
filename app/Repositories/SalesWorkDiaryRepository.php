@@ -64,4 +64,28 @@ class SalesWorkDiaryRepository
         $salesWorkDiary->CreateDate = "$nowDate $nowTime";
         $salesWorkDiary->save();
     }
+
+    public function getById($id) {
+        $diary = SalesWorkMemo::where('WorkMemoID', '=', $id)
+            ->first();
+        if(isset($diary->WorkMemoID) == false) {
+            throw new Exception('日誌不存在');
+        }
+        return $diary;
+    }
+
+    public function updateById($id, $params, $admin) {
+        $salesWorkDiary = SalesWorkMemo::where('WorkMemoID', '=', $id)
+            ->first();
+        if(isset($salesWorkDiary->WorkMemoID) == false) {
+            throw new Exception('日誌不存在');
+        }
+
+        $salesWorkDiary->SubId = $params['SubId'];
+        $salesWorkDiary->SubName = $params['SubName'];
+        $salesWorkDiary->VisitDate = $params['VisitDate'];
+        $salesWorkDiary->SalesName = $params['SalesName'];
+        $salesWorkDiary->WorkMemo = $params['WorkMemo'];
+        $salesWorkDiary->save();
+    }
 }

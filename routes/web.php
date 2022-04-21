@@ -151,6 +151,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.login']], function() 
     Route::get('record/edit/{id}', 'Admin\RecordController@edit');
 
     Route::get('sales/diary', 'Admin\SalesWorkDiaryController@index');
+    Route::get('sales/diary/edit/{id}', 'Admin\SalesWorkDiaryController@edit');
+    Route::post('sales/diary/edit/{id}', 'Admin\SalesWorkDiaryController@update');
 
     Route::get('logout', 'Admin\UserController@logout');
 });
