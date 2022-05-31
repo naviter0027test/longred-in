@@ -55,28 +55,29 @@ class SalesWorkDiaryRepository
 
         $nowDate = date('Y-m-d');
         $nowTime = date('H:i:s');
+        $count = SalesWorkMemo::where('CreateDate', 'like', "$nowDate%")
+            ->count();
+        $fileName = $nowDate. '-'. str_pad($count, 5, '0', STR_PAD_LEFT);
+
         $salesWorkDiary = new SalesWorkMemo();
         $salesWorkDiary->SubId = $params['SubId'];
         $salesWorkDiary->SubName = $company->UserName;
         $salesWorkDiary->VisitDate = $params['VisitDate'];
         $salesWorkDiary->SalesName = $params['SalesName'];
         $salesWorkDiary->WorkMemo = $params['WorkMemo'];
-        $salesWorkDiary->RandomName = "$nowDate-". rand(1000000, 9999999);
+        $salesWorkDiary->RandomName = $fileName;
         $salesWorkDiary->CreateDate = "$nowDate $nowTime";
         $salesWorkDiary->save();
 
         $path = env('SALES_WORK_MEMO_PATH', '');
         if(is_dir($path) == true) {
-            $count = SalesWorkMemo::where('CreateDate', 'like', "$nowDate%")
-                ->count();
-            $fileName = $nowDate. '-'. str_pad($count, 5, '0', STR_PAD_LEFT). '.csv';
             $fileContentArr = [
                 $params['SubId'],
                 $company->UserName,
                 $params['VisitDate'],
                 $params['WorkMemo']
             ];
-            Storage::disk('salesmemo')->put($fileName, implode(',', $fileContentArr));
+            Storage::disk('salesmemo')->put($fileName. '.csv', implode(',', $fileContentArr));
         }
     }
 
