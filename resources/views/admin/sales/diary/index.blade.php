@@ -10,7 +10,7 @@
     <body>
 @include('admin.layout.menu')
         <div class="content">
-            <h3>工作日誌查詢</h3>
+            <h3>工作日誌</h3>
             <div class="nav">
                 <form method="get" action="/admin/sales/diary" enctype="multipart/form-data" class="searchBar">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
