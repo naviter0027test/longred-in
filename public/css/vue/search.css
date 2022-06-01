@@ -20,6 +20,13 @@
     border-bottom-left-radius: 25px;
 }
 
+.search-panel .add {
+    display: inline-block;
+    padding: 5px 5px 5px 15px;
+
+    vertical-align: top;
+}
+
 .search-panel .search-btn {
     padding: 5px 15px 5px 5px;
     height: 32px;

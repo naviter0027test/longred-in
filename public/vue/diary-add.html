@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='/lib/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' />
+        <link href='/lib/bootstrap/dist/css/bootstrap-theme.min.css' rel='stylesheet' />
+        <link href='/css/vue/body.css' rel='stylesheet' />
+        <link href='/css/vue/search.css' rel='stylesheet' />
+        <link href='/css/vue/add.css' rel='stylesheet' />
+    </head>
+    <body class="body">
+        <div id="vueApp">
+            <div class="header">
+                <a href="/vue/home.html" class="glyphicon glyphicon-chevron-left chevron"></a>
+                    業務內部 APP 展示
+            </div>
+            <p class="sec-bar"> 工作日誌 新增 </p>
+            <div class="content content-add">
+                <label class="add-label">車行</label>
+                <select v-model="SubId" class="add-select">
+                    <option v-for="company in companies" :value="company.UserId" >
+                    {{company.UserName}}
+                    </option>
+                </select>
+                <label class="add-label">日誌內容</label>
+                <input type="text" v-model="WorkMemo" class="add-input" placeholder="日誌內容" />
+                    <!--
+                    <option value="送款" >送款</option>
+                    <option value="拜訪" >拜訪</option>
+                    <option value="補收資料" >補收資料</option>
+                    <option value="收款" >收款</option>
+                    <option value="獎勵金" >獎勵金</option>
+                    <option value="送帳單" >送帳單</option>
+                    -->
+                <label class="add-label">參觀日期</label>
+                <input type="date" v-model="VisitDate" class="add-input"/>
+                <button class="submit-btn" v-on:click="add" >新增</button>
+            </div>
+        </div>
+    </body>
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/vue.min.js"></script>
+    <script src="/js/vue/diary-add.js"></script>
+</html>
