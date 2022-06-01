@@ -94,6 +94,11 @@ return [
             'driver' => 'local',
             'root' => storage_path('csvlog'),
         ],
+
+        'salesmemo' => [
+            'driver' => 'local',
+            'root' => env('SALES_WORK_MEMO_PATH', '/home/csv_upload/SalesWorkMemo'),
+        ],
     ],
 
 ];
