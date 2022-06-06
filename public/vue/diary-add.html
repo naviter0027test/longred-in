@@ -25,15 +25,17 @@
                     </option>
                 </select>
                 <label class="add-label">日誌內容</label>
-                <input type="text" v-model="WorkMemo" class="add-input" placeholder="日誌內容" />
                     <!--
+                <input type="text" v-model="WorkMemo" class="add-input" placeholder="日誌內容" />
+                    -->
+                <select v-model="WorkMemo" class="add-select">
                     <option value="送款" >送款</option>
                     <option value="拜訪" >拜訪</option>
                     <option value="補收資料" >補收資料</option>
                     <option value="收款" >收款</option>
                     <option value="獎勵金" >獎勵金</option>
                     <option value="送帳單" >送帳單</option>
-                    -->
+                </select>
                 <label class="add-label">參觀日期</label>
                 <input type="date" v-model="VisitDate" class="add-input"/>
                 <button class="submit-btn" v-on:click="add" >新增</button>
