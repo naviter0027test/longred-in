@@ -75,7 +75,9 @@ class SalesWorkDiaryRepository
                 $params['SubId'],
                 $company->UserName,
                 $params['VisitDate'],
-                $params['WorkMemo']
+		$params['UserName'],
+                $params['WorkMemo'],
+		$salesWorkDiary->CreateDate,
             ];
             Storage::disk('salesmemo')->put($fileName. '.csv', implode(',', $fileContentArr));
         }

@@ -52,6 +52,7 @@ class SalesWorkDiaryController extends Controller
         ];
         $user = Session::get('user');
         $privileges = Session::get('seePrivileges');
+	$params['UserName'] = $user->UserName;
         try {
             $params['SalesName'] = $user->UserName;
             $salesWorkDiaryController = new SalesWorkDiaryRepository();
