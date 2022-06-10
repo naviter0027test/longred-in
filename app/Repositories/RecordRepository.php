@@ -1359,14 +1359,18 @@ class RecordRepository
         if(isset($params['PayPageStatus']) && trim($params['PayPageStatus']) != '') {
             switch($params['PayPageStatus']) {
             case '全部':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 break;
             case '已撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('CustPayStatus', '=', '已撥款');
                 break;
             case '缺資料未撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('DocumentMemo', '<>', '');
                 break;
             case '資料已齊待撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('CustPayStatus', '=', '已撥款');
                 $recordQuery->where('DocumentMemo', '=', '');
                 break;
@@ -1519,14 +1523,18 @@ class RecordRepository
         if(isset($params['PayPageStatus']) && trim($params['PayPageStatus']) != '') {
             switch($params['PayPageStatus']) {
             case '全部':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 break;
             case '已撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('CustPayStatus', '=', '已撥款');
                 break;
             case '缺資料未撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('DocumentMemo', '<>', '');
                 break;
             case '資料已齊待撥款':
+                $recordQuery->where('CustProjectStatus', '=', '核准');
                 $recordQuery->where('CustPayStatus', '=', '已撥款');
                 $recordQuery->where('DocumentMemo', '=', '');
                 break;
